@@ -14,7 +14,7 @@
         android:title="@string/schedule" />
 
     <item
-        android:id="@+id/roomsFragment"
+        android:id="@+id/go_to_research"
         android:icon="@drawable/ic_research"
         android:title="@string/research" />
 </menu>

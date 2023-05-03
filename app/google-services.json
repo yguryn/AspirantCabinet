@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "490508945413",
+    "project_id": "aspirantcabinet",
+    "storage_bucket": "aspirantcabinet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490508945413:android:98194c9e10f90af12cf46c",
+        "android_client_info": {
+          "package_name": "com.postgraduate.cabinet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490508945413-r149ce69tbp78p930q2vlu5hrfh9nmjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnA4lxcD9i6b5OkDpbW00grJWMyC6Slko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490508945413-r149ce69tbp78p930q2vlu5hrfh9nmjc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

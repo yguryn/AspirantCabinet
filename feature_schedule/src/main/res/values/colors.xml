@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_default_time_events_grid">#828282</color>
+    <color name="color_selected_time_events_grid">#F3BE00</color>
+    <color name="brand_yellow">#F3BE00</color>
+    <color name="grid_color">#EBEBEB</color>
+    <color name="text_color_grid_time">#828282</color>
+    <color name="text_color_grid_city">#556170</color>
+    <color name="shade_stripe_color">#66FAFAFA</color>
+    <color name="colorBerlin">#F3AF00</color>
+    <color name="color_text_title_and_cityOf_booking">#020303</color>
+
 </resources>

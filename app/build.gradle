@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -56,10 +57,19 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
+
+
     implementation project(":feature_login")
     implementation project(":feature_profile")
     implementation project(":feature_schedule")
     implementation project(":ui")
     implementation project(":core")
+    implementation project(":feature_research")
 
 }

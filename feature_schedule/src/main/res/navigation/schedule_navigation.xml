@@ -6,7 +6,28 @@
 
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="com.example.feature_schedule.ScheduleFragment"
-        android:label="ScheduleFragment" />
+        android:name="com.example.feature_schedule.schedule.ScheduleFragment"
+        android:label="ScheduleFragment">
+        <action
+            android:id="@+id/action_scheduleFragment_to_newEventFragment"
+            app:destination="@id/newEventFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_modifyEventFragment"
+            app:destination="@id/modifyEventFragment">
+            <argument
+                android:name="eventId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newEventFragment"
+        android:name="com.example.feature_schedule.newevent.NewEventFragment"
+        android:label="NewEventFragment" />
+
+    <fragment
+        android:id="@+id/modifyEventFragment"
+        android:name="com.example.feature_schedule.modifyevent.ModifyEventFragment"
+        android:label="ModifyEventFragment" />
 
 </navigation>

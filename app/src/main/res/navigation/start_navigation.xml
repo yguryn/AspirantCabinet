@@ -18,9 +18,13 @@
     <action
         android:id="@+id/go_to_profile"
         app:destination="@id/profile_navigation" />
+    <action
+        android:id="@+id/go_to_research"
+        app:destination="@id/research_navigation" />
 
     <include app:graph="@navigation/login_navigation" />
     <include app:graph="@navigation/profile_navigation" />
     <include app:graph="@navigation/schedule_navigation" />
+    <include app:graph="@navigation/research_navigation" />
 
 </navigation>

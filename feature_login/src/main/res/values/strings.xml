@@ -4,4 +4,8 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="come_in">Log in</string>
     <string name="password">Password</string>
+    <string-array name="Sex">
+        <item>Чоловіча</item>
+        <item>Жіноча</item>
+    </string-array>
 </resources>

@@ -16,6 +16,9 @@
     <fragment
         android:id="@+id/profileSecondFragment"
         android:name="com.example.feature_profile.ProfileSecondFragment"
-        android:label="ProfileSecondFragment" />
+        android:label="ProfileSecondFragment" >
+    <deepLink
+        app:uri="android-app://example.google.app/settings_fragment_two" />
+    </fragment>
 
 </navigation>

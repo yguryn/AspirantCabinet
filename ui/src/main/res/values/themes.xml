@@ -13,4 +13,88 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ModifyTextViewStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="lineHeight">24sp</item>
+    </style>
+
+    <style name="DefaultButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/selector_log_in_button</item>
+        <item name="android:text">Log In</item>
+        <item name="android:textColor">@color/dark_gray_text</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_color</item>
+    </style>
+
+    <style name="AppTheme.MaterialTimePickerTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="android:textColorSecondary">@color/title_text_color</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarPositiveButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/title_text_color</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarPositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/title_text_color</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#FFF</item>
+        <!--selected Item color-->
+        <item name="colorControlActivated">@color/brand_yellow</item>
+        <!-- Ok Cancel Color-->
+        <item name="android:textColor">@color/black</item>
+        <!--day , month-->
+        <item name="android:textColorPrimaryInverse">@color/black</item>
+        <!-- year-->
+        <item name="android:textColorSecondaryInverse">@color/gray</item>
+    </style>
+
+    <style name="event_card_style">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textColor">@color/color_text_title_and_cityOf_booking</item>
+        <item name="android:lineHeight" tools:targetApi="p">24dp</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">400</item>
+    </style>
+
+    <style name="time_card_style">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/color_text_dateOf_booking</item>
+        <item name="android:lineHeight" tools:targetApi="p">16dp</item>
+        <item name="fontFamily">Roboto</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">400</item>
+    </style>
+
+    <style name="name_booking_style">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:lineHeight" tools:targetApi="p">16dp</item>
+        <item name="android:textColor">@color/color_text_title_and_cityOf_booking</item>
+        <item name="fontFamily">Roboto</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">400</item>
+    </style>
+
+    <style name="description">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/color_text_dateOf_booking</item>
+        <item name="android:lineHeight" tools:targetApi="p">20dp</item>
+        <item name="fontFamily">Roboto</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">400</item>
+    </style>
 </resources>

@@ -1,23 +1,22 @@
-package com.example.feature_schedule
+package com.example
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.postgraduate.cabinet.feature_schedule.databinding.FragmentScheduleBinding
+import com.postgraduate.cabinet.feature_login.databinding.FragmentAdditionalBinding
 
-class ScheduleFragment : Fragment() {
+class FragmentAdditional : Fragment() {
 
-    private lateinit var binding: FragmentScheduleBinding
+    private lateinit var binding: FragmentAdditionalBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentScheduleBinding.inflate(layoutInflater)
+        binding = FragmentAdditionalBinding.inflate(layoutInflater)
         return binding.root
     }
 

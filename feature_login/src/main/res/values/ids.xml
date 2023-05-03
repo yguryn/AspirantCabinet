@@ -2,4 +2,5 @@
 <resources>
     <item name="go_to_login" type="id" />
     <item name="go_to_profile" type="id" />
+    <item name="go_to_research" type="id" />
 </resources>
