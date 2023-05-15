@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/supervisorList"
+    android:id="@+id/supervisor_administrator_navigation">
+
+    <fragment
+        android:id="@+id/supervisorList"
+        android:name="com.example.feature_administrator.aspirantlist.supervisorlist.SupervisorListFragment"
+        android:label="SupervisorListFragment" >
+    <action
+        android:id="@+id/action_supervisorList_to_addSupervisor"
+        app:destination="@id/addSupervisor" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addSupervisor"
+        android:name="com.example.feature_administrator.aspirantlist.addsupervisor.AddSupervisorFragment"
+        android:label="AddSupervisorFragment" />
+
+</navigation>

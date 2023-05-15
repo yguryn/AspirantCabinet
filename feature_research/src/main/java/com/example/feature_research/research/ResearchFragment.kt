@@ -1,13 +1,12 @@
 package com.example.feature_research.research
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,7 +23,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
-import com.example.core.model.Research
 import com.example.feature_research.addresearch.AddResearchScreen
 import com.example.feature_research.di.DaggerResearchComponent
 import javax.inject.Inject
@@ -54,15 +52,6 @@ class ResearchFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.d(
-            "TTT", "view" +
-                    "created"
-        )
-        viewModel.getAllResearches()
-    }
-
     @Composable
     fun MessageCard(findNavController: NavController) {
         val navController = rememberNavController()
@@ -74,7 +63,7 @@ class ResearchFragment : Fragment() {
                 LoginScreen(navController, findNavController)
             }
             composable("research") {
-                ResearchScreen(navController = navController, viewModel)
+                TabScreen(navController = navController, viewModel)
             }
             composable("addResearch") {
                 AddResearchScreen(viewModel)

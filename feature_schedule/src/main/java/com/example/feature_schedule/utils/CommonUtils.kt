@@ -18,6 +18,9 @@ val formatForHours = SimpleDateFormat(HOURS_FORMAT, Locale.ENGLISH)
 val formatForMinutes = SimpleDateFormat(MINUTES_FORMAT, Locale.ENGLISH)
 val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
 val sdf2 = SimpleDateFormat("E, d MMM", Locale.getDefault())
+private const val DATE_FORMAT = "yyyy/MM/dd"
+private const val DATE_FORMAT_FOR_CREATING_EVENT = "yyyy-MM-dd"
+private const val TIME_FORMAT = "HH:mm"
 
 val Int.toPx: Float
     get() = this * Resources.getSystem().displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT
@@ -101,10 +104,58 @@ fun getTimeString(date: Date): String {
     return dateFormat.format(date)
 }
 
-fun main() {
-    val dateString = "Tue, 11 Apr"
-    val timeString = "08:00"
-    val date: Date
-//    date = convertStringToDate(dateString, timeString)
-//    println(date)
+fun notificationTimeConverter(notificationItem: String, timeStart: Calendar): Calendar {
+    return when (notificationItem) {
+        "Never" -> return Calendar.getInstance().apply { timeInMillis = 0 }
+        "At the time of event" ->
+            return timeStart
+                .apply { timeInMillis = timeStart.timeInMillis }
+        "In 5 min" ->
+            return Calendar.getInstance()
+                .apply { timeInMillis = timeStart.timeInMillis - 300000 }
+        "In 10 min" ->
+            return Calendar.getInstance()
+                .apply { timeInMillis = timeStart.timeInMillis - 600000 }
+        "In 15 min" ->
+            return Calendar.getInstance()
+                .apply { timeInMillis = timeStart.timeInMillis - 900000 }
+        "In 30 min" ->
+            return Calendar.getInstance()
+                .apply { timeInMillis = timeStart.timeInMillis - 1800000 }
+        "In 1 hour" ->
+            return Calendar.getInstance()
+                .apply { timeInMillis = timeStart.timeInMillis - 3600000 }
+        else ->
+            Calendar.getInstance()
+                .apply {
+                    timeInMillis =
+                        timeStart.timeInMillis - customNotificationTimeConverter(notificationItem)
+                }
+    }
+}
+
+fun customNotificationTimeConverter(notificationItem: String): Long {
+    val result = notificationItem.split(" ")
+    val input = result[0]
+    val duration: String = result[1]
+    return when (duration) {
+        "Minutes" -> {
+            input.toLong() * 1000 * 60
+        }
+        "Hours" -> {
+            input.toLong() * 1000 * 60 * 60
+        }
+        "Days" -> {
+            input.toLong() * 1000 * 60 * 60 * 24
+        }
+        else ->
+            0L
+    }
+}
+
+fun timeToCalendar(time: String, date: String): Calendar {
+    val timeAndDate = "$time $date"
+    val parsedTime = SimpleDateFormat(TIME_FORMAT + DATE_FORMAT, Locale.getDefault()).parse(timeAndDate)
+
+    return Calendar.getInstance().apply { this.time = parsedTime }
 }

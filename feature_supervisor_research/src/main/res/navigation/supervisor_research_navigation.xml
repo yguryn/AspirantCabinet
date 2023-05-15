@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/supervisor_research_navigation"
+    app:startDestination="@id/aspirantListFragment">
+
+    <fragment
+        android:id="@+id/aspirantListFragment"
+        android:name="com.example.feature_supervisor_research.aspirantlist.AspirantListFragment"
+        android:label="AspirantListFragment">
+        <action
+            android:id="@+id/action_aspirantList_to_aspirantDetails"
+            app:destination="@id/aspirantDetailsFragment">
+            <argument
+                android:name="name"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/aspirantDetailsFragment"
+        android:name="com.example.feature_supervisor_research.aspirantdetails.AspirantDetailsFragment"
+        android:label="AspirantDetailsFragment" />
+
+</navigation>

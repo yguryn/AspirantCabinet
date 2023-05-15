@@ -16,8 +16,8 @@ class GetAllEventsUseCase @Inject constructor(
 
     suspend fun execute(): MutableList<Event> {
         val deferred = CompletableDeferred<MutableList<Event>>()
-        val userId = sharedPreferencesHelper.getInt("USER_ID")
-        booksRef.whereEqualTo("user_id",1).get()
+        val userId = sharedPreferencesHelper.getString("USER_ID")
+        booksRef.whereEqualTo("user_id",userId).get()
             .addOnSuccessListener { documents ->
                 val events = mutableListOf<Event>()
                 for (document in documents) {

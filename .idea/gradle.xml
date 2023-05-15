@@ -12,10 +12,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/feature_administrator" />
             <option value="$PROJECT_DIR$/feature_login" />
             <option value="$PROJECT_DIR$/feature_profile" />
             <option value="$PROJECT_DIR$/feature_research" />
             <option value="$PROJECT_DIR$/feature_schedule" />
+            <option value="$PROJECT_DIR$/feature_supervisor_research" />
             <option value="$PROJECT_DIR$/ui" />
           </set>
         </option>

@@ -6,14 +6,11 @@ import com.google.firebase.firestore.PropertyName
 data class Supervisor(
     @Exclude @JvmField
     var id: String = "",
-    @set:PropertyName("object_research")
-    @get:PropertyName("object_research")
-    var objectResearch: String = "",
-    @set:PropertyName("subject_research")
-    @get:PropertyName("subject_research")
-    var subjectResearch: String = "",
-    @set:PropertyName("user_id")
-    @get:PropertyName("user_id")
-    var userId: Int = 1,
-    var topic: String = "",
+    var name: String = "",
+    var surname: String = "",
+    var middleName: String = "",
+    var faculty: String = "",
+    var email: String = "",
+    var phone: String = "",
+    var listOfAspirants: MutableList<String> = mutableListOf(),
 )

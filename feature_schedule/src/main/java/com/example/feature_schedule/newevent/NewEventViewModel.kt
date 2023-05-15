@@ -7,8 +7,6 @@ import com.example.core.eventusecases.DeleteEventUseCase
 import com.example.core.model.Event
 import com.example.core.utils.SharedPreferencesHelper
 import kotlinx.coroutines.launch
-import java.lang.annotation.ElementType
-import java.util.*
 import javax.inject.Inject
 
 class NewEventViewModel @Inject constructor(
@@ -27,7 +25,7 @@ class NewEventViewModel @Inject constructor(
         deleteEventUseCase.execute()
     }
 
-    fun getUserId() {
-//        sharedPreferencesHelper.getInt(USER)
-    }
+    fun getUserId() =
+        sharedPreferencesHelper.getString("USER_ID")
+
 }

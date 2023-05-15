@@ -1,9 +1,10 @@
+
 package com.example.feature_research.addresearch
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,6 +14,7 @@ import com.example.core.model.Research
 import com.example.feature_research.research.ResearchViewModel
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddResearchScreen(
     researchViewModel: ResearchViewModel
@@ -92,14 +94,15 @@ fun DropDownList(
                 onClick = {
                     request(false)
                     selectedString(it)
-                }
-            ) {
-                Text(it, modifier = Modifier.wrapContentWidth())
-            }
+                },
+                text = { Text(it, modifier = Modifier.wrapContentWidth()) }
+            )
         }
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SemesterSelection() {
     val countryList = listOf(
@@ -149,4 +152,3 @@ fun SemesterSelection() {
         )
     }
 }
-

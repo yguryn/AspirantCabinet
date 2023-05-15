@@ -379,7 +379,7 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     args
                 )
             } else {
-                showEventDetailsDialog(event, Color.BLUE)
+                showEventDetailsDialog(event, Color.parseColor("#F3AF00"))
             }
         }
         this.addView(view, params)

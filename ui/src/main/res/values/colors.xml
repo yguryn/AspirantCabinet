@@ -19,9 +19,13 @@
     <color name="brand_yellow">#F3BE00</color>
     <color name="divider_color">#E0E0E0</color>
     <color name="dark_gray">#8C8C8C</color>
+    <color name="color_toolbar">#E7E1E1</color>
     <color name="text_gray_light">#556170</color>
     <color name="color_border_card">#C41328</color>
     <color name="color_text_title_and_cityOf_booking">#020303</color>
     <color name="color_text_dateOf_booking">#556170</color>
     <color name="red">#EF4B41</color>
+    <color name="accept_green">#32CD32</color>
+    <color name="decline_red">#FF0000</color>
+    <color name="link_blue">#0000EE</color>
 </resources>

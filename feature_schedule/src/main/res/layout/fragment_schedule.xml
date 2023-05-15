@@ -19,8 +19,9 @@
             android:id="@+id/my_scape_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:titleTextColor="@color/black"
             android:background="@color/toolbar_color"
-            app:title="Schedule">
+            app:title="Розклад">
 
             <ImageView
                 android:id="@+id/addEvent"

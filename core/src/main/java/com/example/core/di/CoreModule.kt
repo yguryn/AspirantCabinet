@@ -2,6 +2,7 @@ package com.example.core.di
 
 import android.app.Application
 import android.content.Context
+import com.example.core.utils.Constants.ADMINISTRATOR
 import com.example.core.utils.Constants.ASPIRANT
 import com.example.core.utils.Constants.EVENT
 import com.example.core.utils.Constants.RESEARCH
@@ -40,6 +41,13 @@ class CoreModule(val app: Application) {
     @SupervisorCollection
     fun provideSupervisorCollection(): CollectionReference = Firebase.firestore.collection(
         SUPERVISOR
+    )
+
+    @Provides
+    @Singleton
+    @AdministratorCollection
+    fun provideAdministratorCollection(): CollectionReference = Firebase.firestore.collection(
+        ADMINISTRATOR
     )
 
     @Provides

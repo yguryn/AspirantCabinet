@@ -8,12 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.eventusecases.GetEventByIdUseCase
 import com.example.core.eventusecases.ModifyEventUseCase
 import com.example.core.model.Event
+import com.example.core.utils.SharedPreferencesHelper
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ModifyEventViewModel @Inject constructor(
     private val getEventByIdUseCase: GetEventByIdUseCase,
-    private val modifyEventUseCase: ModifyEventUseCase
+    private val modifyEventUseCase: ModifyEventUseCase,
+    private val preferencesHelper: SharedPreferencesHelper
 ) :
     ViewModel() {
 
@@ -31,4 +33,6 @@ class ModifyEventViewModel @Inject constructor(
     fun modifyEvent(event: Event) {
         modifyEventUseCase.execute(event)
     }
+
+    fun getUserId() = preferencesHelper.getString("USER_ID")
 }

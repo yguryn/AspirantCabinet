@@ -86,7 +86,7 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             viewModel.modifyEvent(
                 Event(
                     id = id,
-                    user_id = 1,
+                    user_id = viewModel.getUserId()!!,
                     title = binding.titleModifyEditText.text.toString(),
                     description = binding.descriptionEditText.text.toString(),
                     event_start = convertStringToDate(

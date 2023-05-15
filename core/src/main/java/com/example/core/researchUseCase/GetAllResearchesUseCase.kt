@@ -16,8 +16,8 @@ class GetAllResearchesUseCase @Inject constructor(
 ) {
     suspend fun execute(): MutableList<Research> {
         val deferred = CompletableDeferred<MutableList<Research>>()
-        val userId = sharedPreferencesHelper.getInt("USER_ID")
-        researchesRef.whereEqualTo("user_id",1).get()
+        val userId = sharedPreferencesHelper.getString("USER_ID")
+        researchesRef.whereEqualTo("user_id",userId).get()
             .addOnSuccessListener { documents ->
                 val researches = mutableListOf<Research>()
                 for (document in documents) {

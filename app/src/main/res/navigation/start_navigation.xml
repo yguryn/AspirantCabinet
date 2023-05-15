@@ -21,10 +21,22 @@
     <action
         android:id="@+id/go_to_research"
         app:destination="@id/research_navigation" />
+    <action
+        android:id="@+id/go_to_administrator"
+        app:destination="@id/administrator_navigation" />
+    <action
+        android:id="@+id/go_to_administrator_supervisor"
+        app:destination="@id/supervisor_administrator_navigation" />
+    <action
+        android:id="@+id/go_to_aspirant_research"
+        app:destination="@id/supervisor_research_navigation" />
 
     <include app:graph="@navigation/login_navigation" />
     <include app:graph="@navigation/profile_navigation" />
     <include app:graph="@navigation/schedule_navigation" />
     <include app:graph="@navigation/research_navigation" />
+    <include app:graph="@navigation/administrator_navigation" />
+    <include app:graph="@navigation/supervisor_administrator_navigation" />
+    <include app:graph="@navigation/supervisor_research_navigation" />
 
 </navigation>

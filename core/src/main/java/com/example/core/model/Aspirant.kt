@@ -1,6 +1,12 @@
 package com.example.core.model
 
+import android.os.Parcelable
+import com.google.firebase.firestore.Exclude
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Aspirant(
+    @Exclude @JvmField
     var id: String = "",
     var name: String = "",
     var surname: String = "",
@@ -18,4 +24,5 @@ data class Aspirant(
     var phone: String = "",
     var isBudget: Boolean = false,
     var isConfirmed: Boolean = false,
-)
+    var researchId: String = ""
+): Parcelable

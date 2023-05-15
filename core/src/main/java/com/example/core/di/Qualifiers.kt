@@ -17,3 +17,7 @@ annotation class AspirantCollection
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class SupervisorCollection
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class AdministratorCollection

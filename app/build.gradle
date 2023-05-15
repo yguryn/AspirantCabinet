@@ -71,5 +71,7 @@ dependencies {
     implementation project(":ui")
     implementation project(":core")
     implementation project(":feature_research")
+    implementation project(":feature_administrator")
+    implementation project(":feature_supervisor_research")
 
 }

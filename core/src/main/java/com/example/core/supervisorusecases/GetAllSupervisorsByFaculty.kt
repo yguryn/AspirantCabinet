@@ -8,16 +8,14 @@ import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.CompletableDeferred
 import javax.inject.Inject
 
-class GetAllSupervisorsByFaculty  @Inject constructor(
-        @SupervisorCollection
-        private val supervisorRef: CollectionReference,
-        private val sharedPreferencesHelper: SharedPreferencesHelper
-    ) {
+class GetAllSupervisorsByFaculty @Inject constructor(
+    @SupervisorCollection
+    private val supervisorRef: CollectionReference,
+) {
 
     suspend fun execute(): MutableList<Supervisor> {
         val deferred = CompletableDeferred<MutableList<Supervisor>>()
-        val userId = sharedPreferencesHelper.getString("FACULTY_ID")
-        supervisorRef.whereEqualTo("faculty", "ІАТЕ").get()
+        supervisorRef.get()
             .addOnSuccessListener { documents ->
                 val supervisors = mutableListOf<Supervisor>()
                 for (document in documents) {
@@ -26,7 +24,7 @@ class GetAllSupervisorsByFaculty  @Inject constructor(
                     supervisors.add(supervisor)
                 }
                 deferred.complete(supervisors)
-                Log.d("TTT","RES$supervisors")
+                Log.d("TTT", "RES$supervisors")
             }
             .addOnFailureListener { exception ->
                 deferred.completeExceptionally(exception)

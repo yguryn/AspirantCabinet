@@ -22,6 +22,10 @@ class ResearchViewModel @Inject constructor(
     private val _listOfResearch = MutableStateFlow(listOf(Research()))
     val listOfResearch: StateFlow<List<Research>> = _listOfResearch.asStateFlow()
 
+    init {
+        getAllResearches()
+    }
+
     fun getAllResearches() {
         viewModelScope.launch {
             _listOfResearch.value = getAllResearchesUseCase.execute()
@@ -29,7 +33,10 @@ class ResearchViewModel @Inject constructor(
     }
 
     fun updateResearch(research: Research) {
-        updateResearchUseCase.execute(research)
+        viewModelScope.launch {
+            updateResearchUseCase.execute(research)
+            _listOfResearch.value = getAllResearchesUseCase.execute()
+        }
     }
 
     fun addEvent(research: Research) {
