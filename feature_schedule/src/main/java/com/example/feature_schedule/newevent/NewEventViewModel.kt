@@ -21,9 +21,6 @@ class NewEventViewModel @Inject constructor(
         }
     }
 
-    fun deleteEvent() {
-        deleteEventUseCase.execute()
-    }
 
     fun getUserId() =
         sharedPreferencesHelper.getString("USER_ID")

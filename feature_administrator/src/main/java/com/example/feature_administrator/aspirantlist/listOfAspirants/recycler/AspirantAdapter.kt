@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.model.Aspirant
 import com.example.feature_administrator.databinding.ItemAspirantBinding
 
-class AspirantAdapter() :
+class AspirantAdapter(private val listener: (Aspirant) -> Unit) :
     RecyclerView.Adapter<AspirantAdapter.ViewHolder>() {
 
     var listOfAspirants = AsyncListDiffer(this, differCallback)
@@ -29,6 +29,9 @@ class AspirantAdapter() :
                 nameTextView.text = "${aspirant.name} ${aspirant.surname} ${aspirant.middleName}"
                 facultyTextView.text = aspirant.faculty
                 groupTextView.text = aspirant.group
+                root.setOnClickListener {
+                    listener.invoke(aspirant)
+                }
             }
         }
     }

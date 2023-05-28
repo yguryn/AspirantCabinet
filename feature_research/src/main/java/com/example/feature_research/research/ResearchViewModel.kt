@@ -19,8 +19,8 @@ class ResearchViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    private val _listOfResearch = MutableStateFlow(listOf(Research()))
-    val listOfResearch: StateFlow<List<Research>> = _listOfResearch.asStateFlow()
+    private val _listOfResearch = MutableStateFlow(Research())
+    val listOfResearch: StateFlow<Research> = _listOfResearch.asStateFlow()
 
     init {
         getAllResearches()

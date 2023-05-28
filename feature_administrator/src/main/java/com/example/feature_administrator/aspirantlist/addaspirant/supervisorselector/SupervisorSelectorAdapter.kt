@@ -35,7 +35,7 @@ class SupervisorSelectorAdapter (
         }
 
         fun bind(supervisor: Supervisor) {
-            binding.roomSelectorName.text = supervisor.name + supervisor.surname + supervisor.middleName
+            binding.roomSelectorName.text = "${supervisor.name} ${supervisor.surname} ${supervisor.middleName}"
         }
     }
 }

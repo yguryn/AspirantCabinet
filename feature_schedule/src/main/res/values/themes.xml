@@ -19,11 +19,11 @@
         <!--selected Item color-->
         <item name="colorControlActivated">@color/brand_yellow</item>
         <!-- Ok Cancel Color-->
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
         <!--day , month-->
-        <item name="android:textColorPrimaryInverse">@color/black</item>
+        <item name="android:textColorPrimaryInverse">@color/white</item>
         <!-- year-->
-        <item name="android:textColorSecondaryInverse">@color/gray</item>
+        <item name="android:textColorSecondaryInverse">@color/brand_yellow</item>
     </style>
 
 

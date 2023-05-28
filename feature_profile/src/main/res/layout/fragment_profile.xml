@@ -87,16 +87,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Subscribers"
+                        android:text="Факультет"
                         android:textColor="#000"
                         android:textSize="17dp" />
 
                     <TextView
+                        android:id="@+id/facultyTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="27dp"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -111,16 +112,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Likes"
+                        android:text="Група"
                         android:textColor="#000"
                         android:textSize="17dp" />
 
                     <TextView
+                        android:id="@+id/groupTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="500K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="27dp"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -135,16 +137,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Shares"
+                        android:text="Здано робіт"
                         android:textColor="#000"
                         android:textSize="17dp" />
 
                     <TextView
+                        android:id="@+id/numberOfWorksTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="33.1K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="27dp"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -219,9 +222,10 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_baseline_lightbulb_24" />
+                android:src="@drawable/baseline_supervisor_account_24" />
 
             <TextView
+                android:id="@+id/superVisorTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -242,9 +246,10 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_modify_time" />
+                android:src="@drawable/baseline_check_box_24" />
 
             <TextView
+                android:id="@+id/researchTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

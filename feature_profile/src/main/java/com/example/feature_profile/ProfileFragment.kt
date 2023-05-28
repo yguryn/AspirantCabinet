@@ -1,6 +1,7 @@
 package com.example.feature_profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,9 +46,23 @@ class ProfileFragment : Fragment() {
 //        }
         viewModel.getUserInfo()
         viewModel.aspirant.observe(viewLifecycleOwner) {
-            binding.fullNameTextView.text = it.surname + it.name + it.middleName
+            binding.fullNameTextView.text = "${it.surname} ${it.name}  ${it.middleName}"
             binding.phoneTextView.text = it.phone
             binding.emailTextView.text = it.email
+            binding.facultyTextView.text = it.faculty
+            binding.groupTextView.text = it.group
+            viewModel.getSupervisorById(it.supervisorId)
+            viewModel.getResearchById(it.researchId)
+
+        }
+        viewModel.supervisor.observe(viewLifecycleOwner) { supervisor->
+            Log.d("TTT","$supervisor")
+            binding.superVisorTextView.text = "${supervisor.surname} ${supervisor.name}  ${supervisor.middleName}"
+        }
+        viewModel.research.observe(viewLifecycleOwner) { research->
+            Log.d("TTT","$research")
+            binding.numberOfWorksTextView.text = research.listOfArticles.size.toString()
+            binding.researchTextView.text = "${research.objectResearch}"
         }
     }
 

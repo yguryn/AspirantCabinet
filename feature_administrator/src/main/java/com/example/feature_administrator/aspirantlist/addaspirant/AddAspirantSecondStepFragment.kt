@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
@@ -47,26 +48,27 @@ class AddAspirantSecondStepFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         aspirant = arguments?.getParcelable<Aspirant>("aspirant")!!
-        binding.supervisorTextView.setOnClickListener {
-            supervisorSelectorDialog = SupervisorSelectorDialog(
-                listOf(
-                    Supervisor(name = "123"),
-                    Supervisor(name = "321")
-                )
-            ) {
-                binding.supervisorTextView.text = it.name
-                aspirant.supervisorId = it.id
-                supervisorSelectorDialog.dismiss()
+        viewModel.getAllSupervisors()
+        viewModel.supervisors.observe(viewLifecycleOwner) { supervisors ->
+            binding.supervisorTextView.setOnClickListener {
+                supervisorSelectorDialog = SupervisorSelectorDialog(
+                    supervisors
+                ) {
+                    binding.supervisorTextView.text = "${it.surname} ${it.name} ${it.middleName}"
+                    aspirant.supervisorId = it.id
+                    supervisorSelectorDialog.dismiss()
+                }
+                supervisorSelectorDialog.show(childFragmentManager, null)
             }
-            supervisorSelectorDialog.show(childFragmentManager, null)
         }
         Log.d("TTT", "$id")
 
         binding.addButton.setOnClickListener {
-            if(checkIsAllDataIsCorrect()) {
+            if (checkIsAllDataIsCorrect()) {
                 binding.inputErrorTextView.isVisible = false
                 setAspirantValues()
                 viewModel.addAspirant(aspirant)
+                findNavController().navigate(R.id.action_addAspirantSecondStep_to_aspirantList)
             } else {
                 binding.inputErrorTextView.isVisible = true
             }
@@ -81,7 +83,7 @@ class AddAspirantSecondStepFragment : Fragment() {
         }
     }
 
-    private fun setAspirantValues(){
+    private fun setAspirantValues() {
         binding.apply {
             aspirant.faculty = facultyEditText.text.toString()
             aspirant.group = groupEditText.text.toString()

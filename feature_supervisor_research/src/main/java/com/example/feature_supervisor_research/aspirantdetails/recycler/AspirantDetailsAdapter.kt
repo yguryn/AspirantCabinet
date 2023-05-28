@@ -10,9 +10,9 @@ import com.example.feature_supervisor_research.databinding.ItemDetailsResearchBi
 class AspirantDetailsAdapter(
     val acceptListener: (Article, Int) -> Unit,
     val declineListener: (Article, Int) -> Unit,
+    val sentListener: (Article, Int) -> Unit,
     val linkListener: (String) -> Unit,
-) :
-    RecyclerView.Adapter<AspirantDetailsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AspirantDetailsAdapter.ViewHolder>() {
 
     var listOfArticles = AsyncListDiffer(this, differDetailsCallback)
 
@@ -22,17 +22,36 @@ class AspirantDetailsAdapter(
         fun bind(article: Article) {
             binding.apply {
                 nameTextView.text = article.name
-                statusTextView.text = article.status
+
                 when (article.status) {
-                    "Sent" -> statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_yellow)
-                    "Approve" -> statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_green)
-                    "Decline" -> statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_red)
+                    "Sent" -> {
+                        statusTextView.text = "Надіслано"
+                        statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_yellow)
+                    }
+
+                    "Approve" -> {
+                        statusTextView.text = "Прийнято"
+                        statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_green)
+                    }
+
+                    "Decline" -> {
+                        statusTextView.text = "Відхилено"
+                        statusTextView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.border_text_red)
+                    }
                 }
                 acceptButton.setOnClickListener {
                     acceptListener.invoke(article, adapterPosition)
                 }
+                commentEditText.setText("")
                 declineButton.setOnClickListener {
                     declineListener.invoke(article, adapterPosition)
+                }
+                commentTextView.text = article.supervisorComment
+
+                sendCommentButton.setOnClickListener {
+                    commentTextView.text = commentEditText.text.toString()
+                    article.supervisorComment = commentEditText.text.toString()
+                    sentListener.invoke(article, adapterPosition)
                 }
                 nameTextView.setOnClickListener {
                     linkListener.invoke(article.url)

@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/aspirantList"
-    android:id="@+id/administrator_navigation">
+    android:id="@+id/administrator_navigation"
+    app:startDestination="@id/aspirantList">
 
     <fragment
         android:id="@+id/aspirantList"
         android:name="com.example.feature_administrator.aspirantlist.listOfAspirants.AspirantListFragment"
         android:label="AspirantListFragment">
-    <action
-        android:id="@+id/action_aspirantList_to_addAspirant"
-        app:destination="@id/addAspirant" />
+        <action
+            android:id="@+id/action_aspirantList_to_addAspirant"
+            app:destination="@id/addAspirant" />
+        <action
+            android:id="@+id/action_aspirantList_to_modify"
+            app:destination="@id/modifyAspirant" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/modifyAspirant"
+        android:name="com.example.feature_administrator.modifyaspirant.ModifyAspirantFragment"
+        android:label="ModifyAspirantFragment">
+    <argument
+        android:name="aspirant"
+        app:argType="com.example.core.model.Aspirant" />
     </fragment>
 
     <fragment
@@ -25,13 +37,13 @@
     <fragment
         android:id="@+id/addAspirantSecondStep"
         android:name="com.example.feature_administrator.aspirantlist.addaspirant.AddAspirantSecondStepFragment"
-        android:label="AddAspirantSecondStep" >
+        android:label="AddAspirantSecondStep">
         <action
             android:id="@+id/action_addAspirantSecondStep_to_aspirantList"
-            app:popUpTo="@id/aspirantList"
-            app:destination="@id/aspirantList" />
-    <argument
-        android:name="aspirant"
-        app:argType="com.example.core.model.Aspirant" />
+            app:destination="@id/aspirantList"
+            app:popUpTo="@id/aspirantList" />
+        <argument
+            android:name="aspirant"
+            app:argType="com.example.core.model.Aspirant" />
     </fragment>
 </navigation>

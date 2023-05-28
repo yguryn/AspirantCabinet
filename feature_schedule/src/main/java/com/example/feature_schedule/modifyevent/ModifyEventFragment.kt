@@ -65,18 +65,21 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = arguments?.getString(ScheduleFragment.EVENT_ID)
-        Log.d("TTT", "mod$id")
         viewModel.getEventById(id!!)
         binding.dateEndTextView.text = id
-        viewModel.event.observe(viewLifecycleOwner) {
-            event = it
+        viewModel.event.observe(viewLifecycleOwner) {eventV->
+            event = eventV
+            binding.textViewDelete.setOnClickListener {
+                viewModel.deleteEvent(id)
+                findNavController().popBackStack()
+            }
             binding.apply {
-                timeStartTextView.text = formatDateToTime(it.event_start)
-                timeEndTextView.text = formatDateToTime(it.event_end)
-                dateStartTextView.text = formatDateToWeek(it.event_start)
-                dateEndTextView.text = formatDateToWeek(it.event_end)
-                descriptionEditText.setText(it.description)
-                titleModifyEditText.setText(it.title)
+                timeStartTextView.text = formatDateToTime(eventV.event_start)
+                timeEndTextView.text = formatDateToTime(eventV.event_end)
+                dateStartTextView.text = formatDateToWeek(eventV.event_start)
+                dateEndTextView.text = formatDateToWeek(eventV.event_end)
+                descriptionEditText.setText(eventV.description)
+                titleModifyEditText.setText(eventV.title)
                 Log.d("TTT", "${dateStartTextView.text}")
                 Log.d("TTT", "${timeStartTextView.text}")
             }

@@ -7,7 +7,7 @@
     <action
         android:id="@id/go_to_profile"
         app:destination="@id/profile_navigation"
-        app:popUpTo="@+id/loginFragment"
+        app:popUpTo="@+id/start_navigation"
         app:popUpToInclusive="true" />
     <action
         android:id="@id/go_to_login"

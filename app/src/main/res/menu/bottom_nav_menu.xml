@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/go_to_profile"
+        android:icon="@drawable/ic_home"
+        android:title="Профіль" />
 
     <item
         android:id="@+id/go_to_schedule"
@@ -13,18 +17,9 @@
         android:icon="@drawable/ic_research"
         android:title="@string/research" />
 
-    <item
-        android:id="@+id/go_to_administrator"
-        android:icon="@drawable/ic_mail"
-        android:title="@string/aspirant" />
-
-    <item
-        android:id="@+id/go_to_administrator_supervisor"
-        android:icon="@drawable/ic_modify_time"
-        android:title="@string/supervisor" />
 
     <item
         android:id="@+id/go_to_aspirant_research"
-        android:icon="@drawable/ic_closed_eye"
-        android:title="Дослідження" />
+        android:icon="@drawable/baseline_people_alt_24"
+        android:title="Аспіранти" />
 </menu>

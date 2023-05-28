@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -23,7 +22,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.core.model.Article
 import com.example.core.model.Research
-import com.example.core.model.Thesis
 import com.example.feature_research.ArticleStatus
 import com.example.feature_research.R
 
@@ -39,31 +37,25 @@ fun ResearchScreen(
         researchViewModel.getAllResearches()
     }
 
-    val listOfResearch = researchViewModel.listOfResearch.collectAsStateWithLifecycle()
-    val listOfResearchHere: List<Research> = listOfResearch.value
+    val research = researchViewModel.listOfResearch.collectAsStateWithLifecycle()
+    val researchHere: Research = research.value
     val scrollState = rememberScrollState()
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .fillMaxHeight()
             .background(Color.White)
     ) {
         Column(
             modifier = Modifier.verticalScroll(state = scrollState)
         ) {
-            ThesisCard(listOfResearch, semester, {
-                listOfResearchHere[0].listOfThesis.add(it)
-                researchViewModel.updateResearch(listOfResearchHere[0])
-            }, {
-                listOfResearchHere[0].listOfThesis.remove(it)
-                researchViewModel.updateResearch(listOfResearchHere[0])
-            })
-            ArticleCard(listOfResearch, semester, {
-                listOfResearchHere[0].listOfArticles.add(it)
-                researchViewModel.updateResearch(listOfResearchHere[0])
+            ArticleCard(research, semester, {
+                researchHere.listOfArticles.add(it)
+                researchViewModel.updateResearch(researchHere)
             }) {
-                listOfResearchHere[0].listOfArticles.remove(it)
-                researchViewModel.updateResearch(listOfResearchHere[0])
+                researchHere.listOfArticles.remove(it)
+                researchViewModel.updateResearch(researchHere)
             }
         }
     }
@@ -72,7 +64,7 @@ fun ResearchScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArticleCard(
-    listOfResearch: State<List<Research>>,
+    research: State<Research>,
     semester: Int,
     articleUploadListener: (Article) -> Unit,
     articleDeleteListener: (Article) -> Unit,
@@ -97,10 +89,34 @@ fun ArticleCard(
                 .padding(8.dp)
         ) {
             Text(
-                text = "Інформація про публікацію наукових статей",
+                text = "Тема дослідження: ",
                 fontSize = 24.sp
             )
-            Text(text = "Додати статтю", fontSize = 18.sp)
+            Text(
+                text = research.value.objectResearch,
+                fontSize = 20.sp
+            )
+            Text(
+                text = "Інформація про виконані роботи:",
+                fontSize = 20.sp
+            )
+            Text(
+                text = "Відправлено робіт: ${research.value.listOfArticles.filter { it.semester == semester }.size}",
+                fontSize = 16.sp,
+            )
+            Text(
+                text = "Прийнято робіт: ${research.value.listOfArticles.filter { it.status == "Approve" && it.semester == semester }.size}",
+                fontSize = 16.sp
+            )
+            Text(
+                text = "На перевірці: ${research.value.listOfArticles.filter { it.status == "Sent" && it.semester == semester }.size}",
+                fontSize = 16.sp
+            )
+            Text(
+                text = "Відхилено: ${research.value.listOfArticles.filter { it.status != "Sent" && it.status != "Approve" && it.semester == semester }.size}",
+                fontSize = 16.sp
+            )
+            Text(text = "Додати роботу", fontSize = 18.sp, modifier = Modifier.padding(8.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -155,209 +171,49 @@ fun ArticleCard(
             ) {
                 Text(text = "Список статей:")
             }
-            ListOfArticles(listOfResearch, semester) {
+            ListOfArticles(research.value.listOfArticles, semester) {
                 articleDeleteListener.invoke(it)
             }
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ThesisCard(
-    listOfResearch: State<List<Research>>,
-    semester: Int,
-    thesisUploadListener: (Thesis) -> Unit,
-    thesisDeleteListener: (Thesis) -> Unit,
-) {
-
-    val nameValue = remember { mutableStateOf(TextFieldValue()) }
-    val linkValue = remember { mutableStateOf(TextFieldValue()) }
-    val supportNameText = remember { mutableStateOf(String()) }
-    val supportLinkText = remember { mutableStateOf(String()) }
-
-    Card(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp
-        ),
-        modifier = Modifier
-            .padding(8.dp)
-            .background(Color.White)
-    ) {
-        Column(
-            modifier = Modifier
-                .background(Color.White)
-                .padding(8.dp)
-        ) {
-            Text(
-                text = "Інформація про тези",
-                fontSize = 24.sp
-            )
-            Text(text = "Додати тезу", fontSize = 18.sp)
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                TextField(
-                    value = nameValue.value,
-                    onValueChange = { nameValue.value = it },
-                    modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text(text = "Назва") },
-                    supportingText = { Text(text = supportNameText.value, color = Color.Red) }
-                )
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                TextField(
-                    value = linkValue.value,
-                    onValueChange = { linkValue.value = it },
-                    modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text(text = "https://example.com") },
-                    supportingText = { Text(text = supportLinkText.value, color = Color.Red) }
-                )
-            }
-            Button(onClick = {
-                val (nameError, linkError) = checkIsDocumentValid(
-                    nameValue.value.text,
-                    linkValue.value.text
-                )
-                Log.d("TTT", "${nameValue.value.text}")
-                Log.d("TTT", "${linkValue.value.text}")
-                supportNameText.value = nameError
-                supportLinkText.value = linkError
-                Log.d("TTT", "${supportNameText.value}")
-                Log.d("TTT", "${supportLinkText.value}")
-                if (supportNameText.value.isEmpty() && supportLinkText.value.isEmpty()) {
-                    thesisUploadListener.invoke(
-                        Thesis(
-                            status = "Sent",
-                            url = "https://www.google.com/",
-                            name = nameValue.value.text,
-                            semester = semester
-                        )
-                    )
-                }
-            }, modifier = Modifier.align(Alignment.CenterHorizontally)) { Text(text = "Надіслати") }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = "Список тез:")
-            }
-            ListOfTheses(listOfResearch, semester) {
-                thesisDeleteListener.invoke(it)
-            }
-        }
-    }
-}
 
 @Composable
 fun ListOfArticles(
-    listOfArticles: State<List<Research>>,
+    listOfArticles: MutableList<Article>,
     semester: Int,
     onDeleteListener: (Article) -> Unit,
 ) {
     var counter = 0
     val context = LocalContext.current
-    if (listOfArticles.value.isNotEmpty()) {
-        val listOfElements =
-            listOfArticles.value[0].listOfArticles.filter { it.semester == semester }
-        Column(
-            modifier = Modifier
-                .height(150.dp)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-        ) {
-            if (listOfElements.isNotEmpty()) {
-                listOfElements.forEach { res ->
-                    val textColor: Color
-                    val text: String
-                    when (res.status) {
-                        "Sent" -> {
-                            textColor = Color.Yellow
-                            text = ArticleStatus.SENT.status
-                        }
-                        "Approve" -> {
-                            textColor = Color.Green
-                            text = ArticleStatus.APPROVED.status
-                        }
-                        else -> {
-                            textColor = Color.Red
-                            text = ArticleStatus.REJECTED.status
-                        }
+    val listOfElements = listOfArticles.filter { it.semester == semester }
+    Column(
+        modifier = Modifier
+            .height(250.dp)
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+    ) {
+        if (listOfElements.isNotEmpty()) {
+            listOfElements.forEach { res ->
+                val textColor: Color
+                val text: String
+                when (res.status) {
+                    "Sent" -> {
+                        textColor = Color.Yellow
+                        text = ArticleStatus.SENT.status
                     }
-                    Row {
-                        Text(
-                            text = text,
-                            modifier = Modifier
-                                .border(width = 4.dp, color = textColor)
-                                .padding(8.dp)
-                        )
-                        Text(
-                            text = res.name,
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .clickable {
-                                    openLink(url = res.url, context = context)
-                                }
-                        )
-
-                        Image(
-                            painter = painterResource(id = R.drawable.baseline_delete_24),
-                            contentDescription = "Delete",
-                            modifier = Modifier
-                                .padding(6.dp)
-                                .clickable { onDeleteListener.invoke(res) },
-                        )
-                        counter++
+                    "Approve" -> {
+                        textColor = Color.Green
+                        text = ArticleStatus.APPROVED.status
+                    }
+                    else -> {
+                        textColor = Color.Red
+                        text = ArticleStatus.REJECTED.status
                     }
                 }
-            }
-        }
-    }
-}
+                Column {
 
-@Composable
-fun ListOfTheses(
-    listOfTheses: State<List<Research>>,
-    semester: Int,
-    onDeleteListener: (Thesis) -> Unit,
-) {
-    var counter = 0
-    val context = LocalContext.current
-    if (listOfTheses.value.isNotEmpty()) {
-        val listOfElements =
-            listOfTheses.value[0].listOfThesis.filter { it.semester == semester }
-        Column(
-            modifier = Modifier
-                .height(150.dp)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-        ) {
-            if (listOfElements.isNotEmpty()) {
-                listOfElements.forEach { res ->
-                    val textColor: Color
-                    val text: String
-                    when (res.status) {
-                        "Sent" -> {
-                            textColor = Color.Yellow
-                            text = ArticleStatus.SENT.status
-                        }
-                        "Approved" -> {
-                            textColor = Color.Green
-                            text = ArticleStatus.APPROVED.status
-                        }
-                        else -> {
-                            textColor = Color.Red
-                            text = ArticleStatus.REJECTED.status
-                        }
-                    }
                     Row {
                         Text(
                             text = text,
@@ -367,6 +223,7 @@ fun ListOfTheses(
                         )
                         Text(
                             text = res.name,
+                            color = Color.Blue,
                             modifier = Modifier
                                 .padding(8.dp)
                                 .clickable {
@@ -383,6 +240,16 @@ fun ListOfTheses(
                         )
                         counter++
                     }
+                    val comment: String = if(res.supervisorComment == ""){
+                        ""
+                    }else {
+                        "Коментар викладача: ${res.supervisorComment}"
+                    }
+                    Text(
+                        text = comment,
+                        modifier = Modifier
+                            .padding(8.dp)
+                    )
                 }
             }
         }
@@ -410,50 +277,3 @@ fun openLink(url: String, context: Context) {
         Toast.makeText(context, "Неможливо відкрити посилання", Toast.LENGTH_SHORT).show()
     }
 }
-
-
-//{
-//    if (listOfResearch.isEmpty() || listOfResearch.first().id == "") {
-//        Text(
-//            text = "There are no items in the list",
-//            modifier = Modifier
-//                .background(Color.Red)
-//                .fillMaxSize()
-//                .wrapContentSize(align = Alignment.Center)
-//        )
-//    } else {
-//        LazyColumn(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .background(Color.White)
-//        ) {
-//            items(listOfResearch) { item ->
-//                repeat(15) {
-//                    Card(
-//                        shape = RoundedCornerShape(8.dp),
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .padding(16.dp)
-//                            .clickable {
-//                                navController.navigate("login")
-//                            }
-//                            .background(Color.Transparent)
-//                    ) {
-//                        Row(modifier = Modifier.background(Color.Red)) {
-//                            Text(text = item.id, modifier = Modifier.padding(16.dp))
-//                            Text(text = item.objectResearch, modifier = Modifier.padding(12.dp))
-//                            Text(text = item.subjectResearch)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    FloatingActionButton(
-//        onClick = { navController.navigate("addResearch") },
-//        modifier = Modifier.align(Alignment.BottomEnd).padding(12.dp),
-//        elevation = FloatingActionButtonDefaults.elevation()
-//    ) {
-//        Icon(Icons.Filled.Add, contentDescription = "Add")
-//    }
-//}

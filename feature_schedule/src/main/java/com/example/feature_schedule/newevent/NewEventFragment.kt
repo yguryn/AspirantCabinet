@@ -97,7 +97,6 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             viewModel.addEvent(event)
             findNavController().popBackStack()
         }
-        viewModel.deleteEvent()
 
         binding.textViewTimeEnd.setOnClickListener {
             val endTimeParts = binding.textViewTimeEnd.text.split(":")

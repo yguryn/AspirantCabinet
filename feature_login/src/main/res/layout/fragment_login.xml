@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/startGuideline"
@@ -20,17 +20,34 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_scape_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color"
+            app:title="Логін"
+            app:titleTextColor="@color/black" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
         android:id="@+id/enterTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Enter login and password"
+        android:text="Введіть логін та пароль"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/endGuideline"
         app:layout_constraintStart_toEndOf="@+id/startGuideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout10" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginEditText"
@@ -39,6 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:hint="@string/login"
+        app:hintTextColor="@color/brand_yellow"
+        android:textColorHint="@color/gray"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:errorIconDrawable="@null"
         app:layout_constraintEnd_toStartOf="@id/endGuideline"
@@ -49,7 +68,9 @@
             android:id="@+id/loginInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="40" />
+            android:background="@drawable/edittext_back"
+            android:maxLength="40"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,6 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="@string/password"
+        app:hintTextColor="@color/brand_yellow"
+        android:textColorHint="@color/gray"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:errorIconDrawable="@null"
         app:layout_constraintEnd_toStartOf="@id/endGuideline"
@@ -69,8 +92,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
+            android:background="@drawable/edittext_back"
             android:layout_height="wrap_content"
-            android:maxLength="20" />
+            android:maxLength="20"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,9 +103,9 @@
         android:id="@+id/eyeImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
         android:paddingTop="30dp"
         android:paddingEnd="24dp"
-        android:paddingStart="10dp"
         android:paddingBottom="6dp"
         app:errorIconDrawable="@null"
         app:layout_constraintEnd_toEndOf="@+id/passwordEditText"
@@ -88,25 +113,17 @@
         app:srcCompat="@drawable/ic_closed_eye"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/forgotPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/forgot_password"
-        android:textColor="@color/link_blue"
-        app:layout_constraintStart_toEndOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logInButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@drawable/border"
+        android:backgroundTint="@color/brand_yellow"
         android:text="@string/come_in"
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@+id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@id/forgotPasswordEditText" />
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,4 +3,8 @@
     <item name="go_to_login" type="id" />
     <item name="go_to_profile" type="id" />
     <item name="go_to_research" type="id" />
+    <item name="go_to_administrator_supervisor" type="id" />
+    <item name="go_to_administrator" type="id" />
+    <item name="go_to_schedule" type="id" />
+    <item name="go_to_administrator_addNewTask" type="id" />
 </resources>

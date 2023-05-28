@@ -16,11 +16,19 @@
                 android:defaultValue=""
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_aspirantList_to_addNewTask"
+            app:destination="@id/addNewTaskFragment"/>
     </fragment>
 
     <fragment
         android:id="@+id/aspirantDetailsFragment"
         android:name="com.example.feature_supervisor_research.aspirantdetails.AspirantDetailsFragment"
         android:label="AspirantDetailsFragment" />
+
+    <fragment
+        android:id="@+id/addNewTaskFragment"
+        android:name="com.example.feature_supervisor_research.addnewtask.AddNewTaskFragment"
+        android:label="AddNewTaskFragment" />
 
 </navigation>

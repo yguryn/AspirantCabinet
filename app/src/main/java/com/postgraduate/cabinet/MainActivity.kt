@@ -3,8 +3,10 @@ package com.postgraduate.cabinet
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -12,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.core.utils.SharedPreferencesHelper
+import com.example.feature_login.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.postgraduate.cabinet.di.DaggerAppComponent
 import javax.inject.Inject
@@ -20,10 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var prefsHelper: SharedPreferencesHelper
+    private var check = 0
+    private var checkAspirant = 0
+    private var checkSupervisor = 0
+    private lateinit var navHostFragment: NavHostFragment
+    private lateinit var navController: NavController
+    private lateinit var currentDestination: NavDestination
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         val component =
             DaggerAppComponent.builder()
@@ -32,35 +43,39 @@ class MainActivity : AppCompatActivity() {
         component.inject(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        val navHostFragment =
+        navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (prefsHelper.getString("USER_TYPE") == "Aspirant") {
+            currentDestination = destination
+            if (prefsHelper.getString("USER_TYPE") == "Aspirant" && checkAspirant == 0) {
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
                 bottomNavigationView.menu.removeItem(R.id.go_to_administrator)
-                Log.d("TTT", "tet")
+                bottomNavigationView.menu.removeItem(R.id.go_to_aspirant_research)
                 bottomNavigationView.menu.removeItem(R.id.go_to_administrator_supervisor)
+                checkAspirant++
             }
-
-            if(prefsHelper.getString("USER_TYPE") == "Supervisor") {
+            if (prefsHelper.getString("USER_TYPE") == "Supervisor" && checkSupervisor == 0) {
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
                 bottomNavigationView.menu.removeItem(R.id.go_to_administrator)
-                bottomNavigationView.menu.removeItem(R.id.go_to_administrator_supervisor)
-            }
-            if (prefsHelper.getString("USER_TYPE") == "Administrator") {
-                Log.d("TTT", "tet2")
-                bottomNavigationView.menu.removeItem(R.id.go_to_research)
                 bottomNavigationView.menu.removeItem(R.id.go_to_profile)
-                bottomNavigationView.menu.removeItem(R.id.go_to_schedule)
+                bottomNavigationView.menu.removeItem(R.id.go_to_research)
+                bottomNavigationView.menu.removeItem(R.id.go_to_administrator_supervisor)
+                checkSupervisor++
+            }
+            if (prefsHelper.getString("USER_TYPE") == "Administrator" && check == 0) {
+                bottomNavigationView.menu.clear()
+                bottomNavigationView.inflateMenu(R.menu.bottom_nav_admin_menu)
+                check++
             }
             if (destination.id == com.postgraduate.cabinet.feature_profile.R.id.profileFragment ||
                 destination.id == com.postgraduate.cabinet.feature_schedule.R.id.scheduleFragment ||
                 destination.id == com.example.feature_research.R.id.researchFragment ||
-                destination.id == R.id.loginFragment ||
-                destination.id == com.postgraduate.cabinet.feature_login.R.id.registrationFragment ||
                 destination.id == com.example.feature_administrator.R.id.aspirantList ||
                 destination.id == com.example.feature_administrator.R.id.supervisorList ||
-                destination.id == com.postgraduate.cabinet.feature_login.R.id.registrationFragment ||
                 destination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment
             ) {
                 showBottomNavigationView()
@@ -86,6 +101,21 @@ class MainActivity : AppCompatActivity() {
             NavigationUI.onNavDestinationSelected(item, navController)
 
             return@setOnItemSelectedListener true
+        }
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (currentDestination.id == com.postgraduate.cabinet.feature_profile.R.id.profileFragment ||
+                currentDestination.id == com.postgraduate.cabinet.feature_schedule.R.id.scheduleFragment ||
+                currentDestination.id == com.example.feature_research.R.id.researchFragment ||
+                currentDestination.id == com.example.feature_administrator.R.id.aspirantList ||
+                currentDestination.id == com.example.feature_administrator.R.id.supervisorList ||
+                currentDestination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment) {
+                finish()
+            } else {
+                supportFragmentManager.popBackStack()
+            }
         }
     }
 

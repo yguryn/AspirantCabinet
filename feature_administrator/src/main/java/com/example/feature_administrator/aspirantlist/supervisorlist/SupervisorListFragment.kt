@@ -43,7 +43,10 @@ class SupervisorListFragment : Fragment(R.layout.fragment_supervisor_list) {
         super.onViewCreated(view, savedInstanceState)
 
         supervisorAdapter = SupervisorAdapter() {
-
+            val bundle = Bundle().apply {
+                putParcelable("supervisor", it)
+            }
+            findNavController().navigate(R.id.action_supervisorList_to_modifySupervisor, bundle)
         }
         binding.supervisorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.supervisorRecyclerView.adapter = supervisorAdapter

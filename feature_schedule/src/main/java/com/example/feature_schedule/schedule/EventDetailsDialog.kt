@@ -30,35 +30,12 @@ class EventDetailsDialog(
         format.applyPattern("dd MMMM yyyy")
 
 
-        binding.borderRedLineExp.setBackgroundColor(roomColor)
         binding.borderRedLine.setBackgroundColor(roomColor)
         binding.nameEvent.text = event.title
         binding.timeStart.text = getTimeString(event.event_start)
         binding.timeEnd.text = getTimeString(event.event_end)
         binding.dateOfBooking.text = format.format(event.event_start)
-        binding.nameUser.text = "eventCreatorName"
-        binding.emailUser.text = "event.user.email"
-        binding.emailUser.setOnClickListener {
-            val balloon = createBalloon(requireContext()) {
-                setArrowSize(10)
-                setWidth(80)
-                setHeight(42)
-                setCornerRadius(4f)
-                setAlpha(0.9f)
-                setText("copy")
-                setTextSize(16f)
-                setTextColor(Color.BLACK)
-                setTextIsHtml(true)
-                setBackgroundColor(Color.WHITE)
-                setBalloonAnimation(BalloonAnimation.FADE)
-                setLifecycleOwner(lifecycleOwner)
-                setArrowOrientation(ArrowOrientation.BOTTOM)
-                setDismissWhenClicked(true)
-            }
-            balloon.showAlignBottom(it)
-        }
         binding.description.text = event.description
-        binding.openCardView.isVisible = true
 
         alertDialog.setView(binding.root)
 

@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
-class LoginViewModel  @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val getTypeOfUserUseCase: GetTypeOfUserUseCase,
     private val checkIsSupervisorUseCase: CheckIsSupervisorUseCase,
     private val checkIsAdministratorUseCase: CheckIsAdministratorUseCase,
@@ -38,16 +38,30 @@ class LoginViewModel  @Inject constructor(
         get() = _administrator
 
     fun checkAspirant(email: String) {
-        Log.d("TTT","check")
+        Log.d("TTT", "check")
         viewModelScope.launch {
             _administrator.value = checkIsAdministratorUseCase.execute(email)
+        }
+        viewModelScope.launch {
+
             _aspirant.value = getTypeOfUserUseCase.execute(email)
+        }
+
+    }
+
+    fun checkSuperVisor(email: String) {
+        viewModelScope.launch {
+
             _supervisor.value = checkIsSupervisorUseCase.execute(email)
         }
     }
 
     fun writeUserInfo(id: String, type: String) {
-        sharedPreferencesHelper.putString("USER_ID",id)
-        sharedPreferencesHelper.putString("USER_TYPE",type)
+        sharedPreferencesHelper.putString("USER_ID", id)
+        sharedPreferencesHelper.putString("USER_TYPE", type)
+    }
+
+    fun writeResearch(researchId: String) {
+        sharedPreferencesHelper.putString("RESEARCH_ID", researchId)
     }
 }

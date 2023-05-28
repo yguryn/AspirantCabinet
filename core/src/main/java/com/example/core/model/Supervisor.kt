@@ -1,7 +1,11 @@
 package com.example.core.model
 
+import android.os.Parcelable
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.PropertyName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 
 data class Supervisor(
     @Exclude @JvmField
@@ -13,4 +17,4 @@ data class Supervisor(
     var email: String = "",
     var phone: String = "",
     var listOfAspirants: MutableList<String> = mutableListOf(),
-)
+): Parcelable

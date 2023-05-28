@@ -11,34 +11,4 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
 
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.example.RegistrationFragment"
-        android:label="RegistrationFragment"
-        tools:layout="@layout/fragment_registration" >
-
-        <action
-            android:id="@+id/action_registrationFragment_to_registrationSpecializationFragment"
-            app:destination="@id/registrationSpecializationFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/registrationSpecializationFragment"
-        android:name="com.example.RegistrationFragmentSpecialization"
-        android:label="RegistrationFragmentSpecialization"
-        tools:layout="@layout/fragment_registration_specialization" >
-
-        <action
-            android:id="@+id/action_registrationSpecializationFragment_to_additionalFragment"
-            app:destination="@id/additionalFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/additionalFragment"
-        android:name="com.example.FragmentAdditional"
-        android:label="FragmentAdditional"
-        tools:layout="@layout/fragment_additional" />
-
 </navigation>

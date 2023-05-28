@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_scape_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Редагувати Аспіранта"
+            app:titleTextColor="@color/black">
+
+            <Button
+                android:id="@+id/modifyAspirantButton"
+                style="@style/DefaultButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/button_yellow_border"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Зберегти"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@android:color/transparent"
+        android:hint="Ім'я"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout10" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+
+    <EditText
+        android:id="@+id/surnameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Прізвище"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surnameEditText" />
+
+    <EditText
+        android:id="@+id/middleNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="По батькові"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/surnameEditText" />
+
+    <View
+        android:id="@+id/divider3"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/middleNameEditText" />
+
+    <EditText
+        android:id="@+id/phoneNumberEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="09123456789"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/middleNameEditText" />
+
+    <View
+        android:id="@+id/divider4"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
+
+    <EditText
+        android:id="@+id/emailNumberEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="examle@gmail.com"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText" />
+
+    <View
+        android:id="@+id/divider5"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailNumberEditText" />
+
+
+    <EditText
+        android:id="@+id/facultyEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Факультет"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailNumberEditText" />
+
+    <View
+        android:id="@+id/divider7"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facultyEditText" />
+
+    <EditText
+        android:id="@+id/groupEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Група"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/facultyEditText" />
+
+    <View
+        android:id="@+id/divider8"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupEditText" />
+
+    <EditText
+        android:id="@+id/specializationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Спеціальність"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/groupEditText" />
+
+    <View
+        android:id="@+id/divider9"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specializationEditText" />
+
+    <TextView
+        android:id="@+id/supervisorTextView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="Виберіть наукового керівника"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/specializationEditText" />
+
+    <View
+        android:id="@+id/divider10"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/supervisorTextView" />
+
+    <TextView
+        android:id="@+id/paymentForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Форма навчання: "
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/paymentFormRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/paymentFormRadioGroup" />
+
+    <RadioGroup
+        android:id="@+id/paymentFormRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/paymentForm"
+        app:layout_constraintTop_toBottomOf="@id/supervisorTextView">
+
+        <RadioButton
+            android:id="@+id/budgetRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Бюджет"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/contractRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Контракт"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/budgetRadioButton"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/inputErrorTextView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Введіть коректно дані"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paymentFormRadioGroup" />
+
+    <LinearLayout
+        android:id="@+id/containerAspirantDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputErrorTextView">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="18dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:src="@drawable/ic_modify_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_delete" />
+
+        <TextView
+            android:id="@+id/aspirantDeleteTextView"
+            style="@style/ModifyTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:paddingStart="18dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:textColor="@color/red"
+            android:text="Видалити"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView_city"
+            app:layout_constraintTop_toBottomOf="@+id/divider5" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

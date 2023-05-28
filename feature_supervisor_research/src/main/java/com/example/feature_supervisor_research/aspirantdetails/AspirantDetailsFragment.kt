@@ -46,9 +46,14 @@ class AspirantDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = arguments?.getString("123")
-
-        viewModel.getInformation(name!!)
+        val researchId = arguments?.getString("123")
+        val studentName = arguments?.getString("name")
+        binding.myScapeToolbar.title = studentName
+        viewModel.getInformation(researchId!!)
+        viewModel.getResearchByIdUseCase(researchId)
+        viewModel.research.observe(viewLifecycleOwner) {
+            binding.objectResearchTextView2.text = "Тема дослідження: ${it.objectResearch}"
+        }
         viewModel.listOfResearch.observe(viewLifecycleOwner) {
             listOfArticles = it as MutableList<Article>
             aspirantDetailsAdapter.listOfArticles.submitList(it)
@@ -57,12 +62,16 @@ class AspirantDetailsFragment : Fragment() {
         aspirantDetailsAdapter = AspirantDetailsAdapter({ article, position ->
             article.status = "Approve"
             listOfArticles[position] = article
-            viewModel.updateArticle(name, listOfArticles)
+            viewModel.updateArticle(researchId, listOfArticles)
             aspirantDetailsAdapter.notifyItemChanged(position)
         }, { article, position ->
             article.status = "Decline"
             listOfArticles[position] = article
-            viewModel.updateArticle(name, listOfArticles)
+            viewModel.updateArticle(researchId, listOfArticles)
+            aspirantDetailsAdapter.notifyItemChanged(position)
+        }, { article, position ->
+            listOfArticles[position] = article
+            viewModel.updateArticle(researchId, listOfArticles)
             aspirantDetailsAdapter.notifyItemChanged(position)
         }, {
             openLink(it, requireContext())

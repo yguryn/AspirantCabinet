@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.core.model.Supervisor
 import com.example.feature_administrator.R
@@ -45,6 +46,7 @@ class AddSupervisorFragment : Fragment(R.layout.fragment_add_supervisor) {
         binding.addSupervisorButton.setOnClickListener {
             setSupervisorValues()
             viewModel.addSupervisor(supervisor)
+            findNavController().popBackStack()
         }
     }
 

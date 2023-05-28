@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.model.Aspirant
 import com.example.feature_supervisor_research.databinding.ItemAspirantBinding
 
-class AspirantListAdapter(val listener: (Aspirant) -> Unit) :
+class AspirantListAdapter(val listener: (Aspirant) -> Unit, val taskListener: () -> Unit) :
     RecyclerView.Adapter<AspirantListAdapter.ViewHolder>() {
 
     var listOfAspirants = AsyncListDiffer(this, differCallback)
@@ -23,6 +23,12 @@ class AspirantListAdapter(val listener: (Aspirant) -> Unit) :
                 root.setOnClickListener {
                     listener.invoke(aspirant)
                 }
+                nameTextView.setOnClickListener {
+                    taskListener.invoke()
+                }
+//                oneTwoThreImageView.setOnClickListener {
+//
+//                }
             }
         }
     }

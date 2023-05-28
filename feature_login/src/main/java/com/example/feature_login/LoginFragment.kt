@@ -1,6 +1,8 @@
 package com.example.feature_login
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +51,9 @@ class LoginFragment : Fragment() {
         binding.logInButton.setOnClickListener {
             login()
         }
+        binding.eyeImageView.setOnClickListener {
+            changeEyeState(it)
+        }
     }
 
     private fun register() {
@@ -75,19 +80,21 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 viewModel.checkAspirant(email)
+                viewModel.checkSuperVisor(email)
                 viewModel.aspirant.observe(viewLifecycleOwner) {
                     viewModel.writeUserInfo(it.id, "Aspirant")
+                    viewModel.writeResearch(it.researchId)
                     findNavController().navigate(R.id.go_to_profile)
                 }
 
                 viewModel.supervisor.observe(viewLifecycleOwner) {
                     viewModel.writeUserInfo(it.id, "Supervisor")
-                    findNavController().navigate(R.id.go_to_profile)
+                    findNavController().navigate(R.id.go_to_schedule)
                 }
 
                 viewModel.administrator.observe(viewLifecycleOwner) {
                     viewModel.writeUserInfo(it.id, "Administrator")
-                    findNavController().navigate(R.id.go_to_profile)
+                    findNavController().navigate(R.id.go_to_administrator)
                 }
 
             }
@@ -95,6 +102,20 @@ class LoginFragment : Fragment() {
             Toast.makeText(context, exception.localizedMessage, Toast.LENGTH_LONG).show()
         }
     }
+
+    private fun changeEyeState(it: View) {
+        it.isActivated = !it.isActivated
+        if (!it.isActivated) {
+            binding.password.transformationMethod =
+                PasswordTransformationMethod.getInstance()
+            binding.password.setSelection(binding.password.text!!.length)
+        } else {
+            binding.password.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+            binding.password.setSelection(binding.password.text!!.length)
+        }
+    }
+
 
     private fun initDagger() {
         DaggerLoginComponent.builder()

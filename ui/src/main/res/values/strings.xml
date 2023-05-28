@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="profile">Profile</string>
-    <string name="research">Research</string>
+    <string name="profile">Профіль</string>
+    <string name="research">Дослідження</string>
     <string name="aspirant">Аспіранти</string>
     <string name="supervisor">Керівники</string>
+    <string name="task">Завдання</string>
     <string name="schedule">Розклад</string>
     <string name="formatted_time">%02d</string>
     <string name="hours_minutes">%1$s:%2$s</string>

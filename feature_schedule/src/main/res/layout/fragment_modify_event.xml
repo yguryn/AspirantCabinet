@@ -62,11 +62,12 @@
             <Button
                 android:id="@+id/buttonModifyAppBar"
                 style="@style/DefaultButtonStyle"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/button_yellow_border"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:text="@string/save"
+                android:text="Зберегти"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -190,6 +191,7 @@
         android:id="@+id/containerNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
         tools:layout_editor_absoluteX="0dp">
@@ -332,7 +334,7 @@
             android:paddingEnd="16dp"
             android:paddingBottom="16dp"
             android:textColor="@color/red"
-            android:text="Delete Event"
+            android:text="Видалити"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/imageView_city"
             app:layout_constraintTop_toBottomOf="@+id/divider5" />

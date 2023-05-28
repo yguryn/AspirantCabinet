@@ -99,7 +99,7 @@
         android:id="@+id/phoneNumberEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="+3809123456789"
+        android:hint="09123456789"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"

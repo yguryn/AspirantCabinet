@@ -14,19 +14,18 @@ class GetAllResearchesUseCase @Inject constructor(
     private val researchesRef: CollectionReference,
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ) {
-    suspend fun execute(): MutableList<Research> {
-        val deferred = CompletableDeferred<MutableList<Research>>()
-        val userId = sharedPreferencesHelper.getString("USER_ID")
-        researchesRef.whereEqualTo("user_id",userId).get()
-            .addOnSuccessListener { documents ->
-                val researches = mutableListOf<Research>()
-                for (document in documents) {
-                    val research = document.toObject(Research::class.java)
+    suspend fun execute(): Research {
+        val deferred = CompletableDeferred<Research>()
+        val researchId = sharedPreferencesHelper.getString("RESEARCH_ID")!!
+        researchesRef.document(researchId).get()
+            .addOnSuccessListener { document ->
+                val research = document.toObject(Research::class.java)
+                if (research != null) {
                     research.id = document.id
-                    researches.add(research)
                 }
-                deferred.complete(researches)
-                Log.d("TTT","RES$researches")
+                if (research != null) {
+                    deferred.complete(research)
+                }
             }
             .addOnFailureListener { exception ->
                 deferred.completeExceptionally(exception)

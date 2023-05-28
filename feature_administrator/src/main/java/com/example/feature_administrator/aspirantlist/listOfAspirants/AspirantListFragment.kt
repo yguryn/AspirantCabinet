@@ -18,7 +18,7 @@ import com.example.feature_administrator.aspirantlist.listOfAspirants.recycler.A
 import com.example.feature_administrator.databinding.FragmentAspirantListBinding
 import javax.inject.Inject
 
-class AspirantListFragment: Fragment() {
+class AspirantListFragment : Fragment() {
 
     private lateinit var binding: FragmentAspirantListBinding
     private lateinit var aspirantAdapter: AspirantAdapter
@@ -44,7 +44,12 @@ class AspirantListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        aspirantAdapter = AspirantAdapter()
+        aspirantAdapter = AspirantAdapter() {
+            val bundle = Bundle().apply {
+                putParcelable("aspirant", it)
+            }
+            findNavController().navigate(R.id.action_aspirantList_to_modify, bundle)
+        }
         binding.aspirantRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.aspirantRecyclerView.adapter = aspirantAdapter
 
