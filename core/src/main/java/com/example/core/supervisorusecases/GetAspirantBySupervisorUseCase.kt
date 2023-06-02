@@ -39,7 +39,7 @@ class GetAspirantsBySupervisorUseCase @Inject constructor(
     }
 
     suspend fun getSupervisor(): Supervisor {
-        val supervisorId = "BsNUGGG35ui8JEfuNjzd"
+        val supervisorId = sharedPreferencesHelper.getString("USER_ID")!!
         val deferredSupervisor = CompletableDeferred<Supervisor>()
         supervisorRef.document(supervisorId).get().addOnSuccessListener {
             deferredSupervisor.complete(it.toObject(Supervisor::class.java)!!)

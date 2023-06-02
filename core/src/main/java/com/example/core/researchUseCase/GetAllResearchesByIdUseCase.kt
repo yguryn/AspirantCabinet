@@ -1,6 +1,5 @@
 package com.example.core.researchUseCase
 
-import android.util.Log
 import com.example.core.di.ResearchCollection
 import com.example.core.model.Article
 import com.example.core.model.Research

@@ -2,7 +2,6 @@ package com.example.feature_schedule.schedule
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -15,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -90,7 +88,6 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         viewModel.events.observe(viewLifecycleOwner) {
             events = it
-            Log.d("TTT", "EHE $events")
             drawEventsFilteredByRoom()
         }
 
@@ -169,14 +166,8 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         return selectedCal.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH)
     }
 
-    private fun scrollCalendarTo(y: Int) {
-        Handler(Looper.getMainLooper()).post {
-            binding.scrollViewRoomBookingCalendar.smoothScrollTo(0, y)
-        }
-    }
 
     private fun setOnScrollListener() {
-//        scroll from 6 AM to 8 AM
         Handler(Looper.getMainLooper()).post {
             binding.scrollViewRoomBookingCalendar.scrollTo(0, (ROW_HEIGHT_DP * 2).toPx.toInt())
         }
@@ -223,11 +214,6 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 val calendarForDay = Calendar.getInstance()
                 selectedCal.set(Calendar.DAY_OF_MONTH, mDayOfMonthUI.day)
 
-//                selectedDate = SelectedDate(
-//                    mDayOfMonthUI.day,
-//                    selectedCal.get(Calendar.MONTH),
-//                    selectedCal.get(Calendar.YEAR)
-//                )
 
                 calendarForDay.set(
                     selectedCal.get(Calendar.YEAR),
@@ -235,13 +221,6 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     mDayOfMonthUI.day
                 )
 
-//                lifecycleScope.launch {
-//                    viewModel.getEventsFromOfficeByDate(
-//                        viewModel.getOfficeIdByCity(city),
-//                        formatForCreatingEvent.format(calendarForDay.time),
-//                        formatForCreatingEvent.format(calendarForDay.time)
-//                    )
-//                }
                 viewModel.getAllEvents(selectedCal)
             }
         })
@@ -298,30 +277,13 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         calendarStartTime.time = event.event_start
         val calendarEndTime = Calendar.getInstance()
         calendarEndTime.time = event.event_end
-        val startTime = event.event_start
-        val endTime = event.event_end
 
         val minutesFrom: Int = calendarStartTime.get(Calendar.MINUTE)
         val hourFrom: Int = calendarStartTime.get(Calendar.HOUR_OF_DAY)
 
-//        if (getDayOfMonth(event.startDate) == selectedCal.get(Calendar.DAY_OF_MONTH)) {
-//            hourFrom = startTime.time.
-//            minutesFrom = startTime.minute
-//        } else {
-//            hourFrom = EVENT_FROM_START
-//            minutesFrom = EVENT_FROM_START
-//        }
 
         val minutesTo: Int = calendarEndTime.get(Calendar.MINUTE)
         val hourTo: Int = calendarEndTime.get(Calendar.HOUR_OF_DAY)
-
-//        if (getDayOfMonth(event.endDate) == selectedCal.get(Calendar.DAY_OF_MONTH)) {
-//            hourTo = endTime.hour
-//            minutesTo = endTime.minute
-//        } else {
-//            hourTo = HOURS_IN_DAY
-//            minutesTo = EVENT_FROM_START
-//        }
 
         val timeFrom = hourFrom.toFloat() + minutesFrom.toFloat() / MINUTES_IN_HOUR
         val timeTo = hourTo.toFloat() + minutesTo.toFloat() / MINUTES_IN_HOUR
@@ -334,8 +296,7 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         var eventCreatorPosition = ""
 
         singleRoomEventBinding.coloredEventMarker.setBackgroundColor(roomColor)
-//        eventCreatorName = "${event.user.surname} ${event.user.name}"
-//        eventCreatorPosition = event.user.position
+
 
 
         val delta = timeTo - timeFrom
@@ -402,12 +363,6 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
 
-//        selectedDate = SelectedDate(
-//            dayOfMonth,
-//            month,
-//            year
-//        )
-
         val formattedMonthYearWithNumber: String = formatMonthYear(selectedCal.timeInMillis)
 
         val nameMonthOfYearSelect = SimpleDateFormat(
@@ -435,23 +390,10 @@ class ScheduleFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         binding.monthTextView.text = formattedMonthYearWithNumber
 
-//        lifecycleScope.launch {
-//            viewModel.getEventsFromOfficeByDate(
-//                viewModel.getOfficeIdByCity(city),
-//                formatForCreatingEvent.format(selectedCal.time),
-//                formatForCreatingEvent.format(selectedCal.time)
-//            )
-//        }
-
         scrollDaysRecyclerViewToSelectedDay()
     }
 
     companion object {
-        private const val MAX_EVENT_HOURS = 4
-        private const val MIN_EVENT_HOURS = 1
-        private const val HOURS_IN_DAY = 24
-        private const val EVENT_FROM_START = 0
-        private const val GRID_CELLS_COUNT_VERTICALLY = 18
         const val EVENT_ID =
             "com/example/feature_schedule/schedule/ScheduleFragment.kt.event_id"
         const val MINUTES_IN_HOUR = 60

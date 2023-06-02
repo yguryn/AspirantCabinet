@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upcomingCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="8dp"
+    android:background="@color/white"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <View
+            android:id="@+id/borderLineView"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:background="@color/brand_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eventTitleTextView"
+            style="@style/event_card_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/borderLineView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Зустріч з деканом" />
+
+        <TextView
+            android:id="@+id/timeStartTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventTitleTextView"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="10:00" />
+
+
+        <TextView
+            android:id="@+id/timeEndTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/descriptionTextView"
+            app:layout_constraintStart_toEndOf="@+id/dividerTimeTextView"
+            app:layout_constraintTop_toTopOf="@+id/eventTitleTextView"
+            tools:text="11:00" />
+
+        <TextView
+            android:id="@+id/dividerTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="-"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/descriptionTextView"
+            app:layout_constraintStart_toEndOf="@+id/timeStartTextView"
+            app:layout_constraintTop_toTopOf="@+id/eventTitleTextView" />
+
+        <TextView
+            android:id="@+id/eventDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/descriptionTextView"
+            app:layout_constraintStart_toEndOf="@+id/timeEndTextView"
+            app:layout_constraintTop_toTopOf="@+id/eventTitleTextView"
+            tools:text="18 Sept 2021" />
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            style="@style/name_booking_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/timeStartTextView"
+            tools:text="Здати перший розділ роботи" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

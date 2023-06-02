@@ -1,7 +1,5 @@
 package com.example.core.researchUseCase
 
-import android.util.Log
-import com.example.core.di.EventCollection
 import com.example.core.di.ResearchCollection
 import com.example.core.model.Research
 import com.example.core.utils.SharedPreferencesHelper

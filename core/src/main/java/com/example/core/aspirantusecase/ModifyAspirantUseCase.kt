@@ -1,15 +1,13 @@
 package com.example.core.aspirantusecase
 
-import android.util.Log
 import com.example.core.di.AspirantCollection
 import com.example.core.model.Aspirant
-import com.example.core.model.Event
 import com.google.firebase.firestore.CollectionReference
 import javax.inject.Inject
 
 class ModifyAspirantUseCase @Inject constructor(
     @AspirantCollection
-    private val booksRef: CollectionReference,
+    private val aspirantRef: CollectionReference,
 ) {
 
     fun execute(aspirant: Aspirant) {
@@ -25,6 +23,6 @@ class ModifyAspirantUseCase @Inject constructor(
             "group" to aspirant.group,
             "specialization" to aspirant.specialization,
         )
-        booksRef.document(aspirant.id).update(data)
+        aspirantRef.document(aspirant.id).update(data)
     }
 }

@@ -52,18 +52,11 @@ class MainActivity : AppCompatActivity() {
             if (prefsHelper.getString("USER_TYPE") == "Aspirant" && checkAspirant == 0) {
                 bottomNavigationView.menu.clear()
                 bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
-                bottomNavigationView.menu.removeItem(R.id.go_to_administrator)
-                bottomNavigationView.menu.removeItem(R.id.go_to_aspirant_research)
-                bottomNavigationView.menu.removeItem(R.id.go_to_administrator_supervisor)
                 checkAspirant++
             }
             if (prefsHelper.getString("USER_TYPE") == "Supervisor" && checkSupervisor == 0) {
                 bottomNavigationView.menu.clear()
-                bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
-                bottomNavigationView.menu.removeItem(R.id.go_to_administrator)
-                bottomNavigationView.menu.removeItem(R.id.go_to_profile)
-                bottomNavigationView.menu.removeItem(R.id.go_to_research)
-                bottomNavigationView.menu.removeItem(R.id.go_to_administrator_supervisor)
+                bottomNavigationView.inflateMenu(R.menu.bottom_nav_supervisor_menu)
                 checkSupervisor++
             }
             if (prefsHelper.getString("USER_TYPE") == "Administrator" && check == 0) {
@@ -75,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 destination.id == com.postgraduate.cabinet.feature_schedule.R.id.scheduleFragment ||
                 destination.id == com.example.feature_research.R.id.researchFragment ||
                 destination.id == com.example.feature_administrator.R.id.aspirantList ||
+                destination.id == com.example.feature_events_list.R.id.eventListFragment ||
                 destination.id == com.example.feature_administrator.R.id.supervisorList ||
                 destination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment
             ) {
@@ -90,7 +84,8 @@ class MainActivity : AppCompatActivity() {
                 com.postgraduate.cabinet.feature_schedule.R.id.schedule_navigation,
                 com.postgraduate.cabinet.feature_profile.R.id.profile_navigation,
                 com.example.feature_research.R.id.research_navigation,
-                com.example.feature_administrator.R.id.administrator_navigation
+                com.example.feature_administrator.R.id.administrator_navigation,
+                com.example.feature_events_list.R.id.event_list_navigation
             )
         )
         supportActionBar?.hide()
@@ -110,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                 currentDestination.id == com.postgraduate.cabinet.feature_schedule.R.id.scheduleFragment ||
                 currentDestination.id == com.example.feature_research.R.id.researchFragment ||
                 currentDestination.id == com.example.feature_administrator.R.id.aspirantList ||
+                currentDestination.id == com.example.feature_events_list.R.id.event_list_navigation ||
                 currentDestination.id == com.example.feature_administrator.R.id.supervisorList ||
                 currentDestination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment) {
                 finish()

@@ -23,7 +23,7 @@ fun TabScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
-    val tabs = listOf("1 семестр", "2 семестр")
+    val tabs = listOf("1 семестр", "2 семестр", "Завдання", "Інд. план")
 
     Column(modifier = Modifier.fillMaxWidth()) {
         TabRow(selectedTabIndex = pagerState.currentPage, containerColor = Color.White) {
@@ -42,6 +42,8 @@ fun TabScreen(
             when (page) {
                 0 -> ResearchScreen(navController, researchViewModel, 1)
                 1 -> ResearchScreen(navController, researchViewModel, 2)
+                2 -> TasksScreen(researchViewModel = researchViewModel)
+                3 -> IndPlanScreen(researchViewModel = researchViewModel)
             }
         }
     }

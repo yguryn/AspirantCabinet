@@ -8,6 +8,11 @@
         android:title="Профіль" />
 
     <item
+        android:id="@+id/go_to_event_list"
+        android:icon="@drawable/ic_event_list"
+        android:title="@string/events" />
+
+    <item
         android:id="@+id/go_to_schedule"
         android:icon="@drawable/ic_schedule"
         android:title="@string/schedule" />
@@ -18,8 +23,5 @@
         android:title="@string/research" />
 
 
-    <item
-        android:id="@+id/go_to_aspirant_research"
-        android:icon="@drawable/baseline_people_alt_24"
-        android:title="Аспіранти" />
+
 </menu>

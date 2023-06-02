@@ -73,5 +73,6 @@ dependencies {
     implementation project(":feature_research")
     implementation project(":feature_administrator")
     implementation project(":feature_supervisor_research")
+    implementation project(":feature_events_list")
 
 }

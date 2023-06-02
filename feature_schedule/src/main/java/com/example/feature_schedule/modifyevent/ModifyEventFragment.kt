@@ -3,8 +3,6 @@ package com.example.feature_schedule.modifyevent
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.provider.CalendarContract.Instances.EVENT_ID
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +10,12 @@ import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.core.model.Event
 import com.example.feature_schedule.di.DaggerFragmentsComponent
-import com.example.feature_schedule.newevent.NewEventViewModel
 import com.example.feature_schedule.schedule.ScheduleFragment
 import com.example.feature_schedule.utils.*
-import com.postgraduate.cabinet.feature_schedule.R
 import com.postgraduate.cabinet.feature_schedule.databinding.FragmentModifyEventBinding
 import java.util.*
 import javax.inject.Inject
@@ -64,10 +59,13 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = arguments?.getString(ScheduleFragment.EVENT_ID)
+        var id = arguments?.getString(ScheduleFragment.EVENT_ID)
+        if (id == null) {
+            id = requireArguments().getString("eventId")
+        }
         viewModel.getEventById(id!!)
         binding.dateEndTextView.text = id
-        viewModel.event.observe(viewLifecycleOwner) {eventV->
+        viewModel.event.observe(viewLifecycleOwner) { eventV ->
             event = eventV
             binding.textViewDelete.setOnClickListener {
                 viewModel.deleteEvent(id)
@@ -80,8 +78,6 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 dateEndTextView.text = formatDateToWeek(eventV.event_end)
                 descriptionEditText.setText(eventV.description)
                 titleModifyEditText.setText(eventV.title)
-                Log.d("TTT", "${dateStartTextView.text}")
-                Log.d("TTT", "${timeStartTextView.text}")
             }
         }
 

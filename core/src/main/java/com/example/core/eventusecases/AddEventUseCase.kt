@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class AddEventUseCase @Inject constructor(
     @EventCollection
-    private val booksRef: CollectionReference
+    private val eventRef: CollectionReference
 ) {
     fun execute(event: Event) {
-        booksRef.add(event)
+        eventRef.add(event)
     }
 }

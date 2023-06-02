@@ -9,7 +9,6 @@ import javax.inject.Inject
 class AddResearchUseCase @Inject constructor(
     @ResearchCollection
     private val researchesRef: CollectionReference,
-    private val sharedPreferencesHelper: SharedPreferencesHelper
 ) {
 
     fun execute(research: Research) {

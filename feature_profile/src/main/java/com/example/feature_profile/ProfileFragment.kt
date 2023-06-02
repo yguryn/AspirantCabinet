@@ -14,6 +14,7 @@ import com.example.core.di.CoreInjectHelper
 import com.example.feature_profile.di.DaggerProfileComponent
 import com.postgraduate.cabinet.feature_profile.R
 import com.postgraduate.cabinet.feature_profile.databinding.FragmentProfileBinding
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
@@ -23,6 +24,8 @@ class ProfileFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<ProfileViewModel> { viewModelFactory }
+
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +43,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.goToTheNext.isVisible
-//        binding.goToTheNext.setOnClickListener {
-//            findNavController().navigate(R.id.action_profileFragment_to_profileSecondFragment)
-//        }
         viewModel.getUserInfo()
         viewModel.aspirant.observe(viewLifecycleOwner) {
             binding.fullNameTextView.text = "${it.surname} ${it.name}  ${it.middleName}"
@@ -51,6 +50,11 @@ class ProfileFragment : Fragment() {
             binding.emailTextView.text = it.email
             binding.facultyTextView.text = it.faculty
             binding.groupTextView.text = it.group
+            binding.birthdayTextView.text = dateFormat.format(it.birthday)
+            binding.markTextView.text = "Оцінка викладача: ${it.grade}"
+            binding.paymentFormTextView.text = if(it.isBudget) "Форма оплати: Держзамовлення" else "Форма оплати: Контракт"
+            binding.educationFormTextView.text = "Форма навчання: ${it.educationForm}"
+            binding.diplomNumberFormTextView.text = "Номер диплому: ${it.diplomaNumber}"
             viewModel.getSupervisorById(it.supervisorId)
             viewModel.getResearchById(it.researchId)
 

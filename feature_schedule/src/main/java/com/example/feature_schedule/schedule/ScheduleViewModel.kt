@@ -1,16 +1,13 @@
 package com.example.feature_schedule.schedule
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.eventusecases.AddEventUseCase
 import com.example.core.eventusecases.GetAllEventsUseCase
 import com.example.core.model.Event
 import com.example.feature_schedule.schedule.model.DayOfMonthUI
 import com.example.feature_schedule.utils.compareDate
-import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,12 +32,8 @@ class ScheduleViewModel @Inject constructor(
     fun getAllEvents(calendar: Calendar) {
         viewModelScope.launch {
             val a = getAllEventsUseCase.execute()
-            Log.d("TTT", "RRR$a")
             _events.value = a.filter { calendar.compareDate(it.event_start) }
             events.value?.forEach {
-                Log.d("TTT", "year -> ${it.event_start.year}")
-                Log.d("TTT", "month -> ${it.event_start.month}")
-                Log.d("TTT", "day -> ${it.event_start.day}")
             }
         }
     }

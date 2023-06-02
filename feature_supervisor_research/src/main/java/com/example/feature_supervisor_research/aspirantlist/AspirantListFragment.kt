@@ -42,15 +42,21 @@ class AspirantListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.aspirantRecycler.layoutManager = LinearLayoutManager(requireContext())
-        aspirantListAdapter = AspirantListAdapter( {
+        aspirantListAdapter = AspirantListAdapter({
             val args = Bundle().apply {
                 putString("123", it.researchId)
                 putString("name", "${it.surname} ${it.name}")
             }
             findNavController().navigate(R.id.action_aspirantList_to_aspirantDetails, args)
         }, {
-            findNavController().navigate(R.id.action_aspirantList_to_addNewTask)
-        })
+            val args = Bundle().apply {
+                putString("123", it.researchId)
+                putString("name", "${it.surname} ${it.name}")
+            }
+            findNavController().navigate(R.id.action_aspirantList_to_addNewTask, args)
+        }, {
+          viewModel.updateAspirantGrade(it)
+        }, childFragmentManager)
         binding.aspirantRecycler.adapter = aspirantListAdapter
         viewModel.check()
         viewModel.aspirant.observe(viewLifecycleOwner) {

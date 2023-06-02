@@ -18,7 +18,9 @@ data class Research(
     var userId: String = "",
     var topic: String = "",
     var listOfArticles: MutableList<Article> = mutableListOf(),
-    var listOfThesis: MutableList<Thesis> = mutableListOf()
+    var listOfThesis: MutableList<Thesis> = mutableListOf(),
+    var listOfTasks: MutableList<Task> = mutableListOf(),
+    var listOfIndividualPlan: MutableList<IndividualPlan> = mutableListOf(),
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -33,6 +35,8 @@ data class Research(
         if (topic != other.topic) return false
         if (listOfArticles !== other.listOfArticles) return false
         if (listOfThesis !== other.listOfThesis) return false
+        if(listOfTasks !== other.listOfTasks) return false
+        if(listOfIndividualPlan !== other.listOfIndividualPlan) return false
 
         return true
     }
@@ -45,6 +49,8 @@ data class Research(
         result = 31 * result + topic.hashCode()
         result = 31 * result + listOfArticles.hashCode()
         result = 31 * result + listOfThesis.hashCode()
+        result = 31 * result + listOfTasks.hashCode()
+        result = 31 * result + listOfIndividualPlan.hashCode()
         return result
     }
 }

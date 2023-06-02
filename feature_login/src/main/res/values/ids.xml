@@ -7,4 +7,5 @@
     <item name="go_to_administrator" type="id" />
     <item name="go_to_schedule" type="id" />
     <item name="go_to_administrator_addNewTask" type="id" />
+    <item name="go_to_event_list" type="id" />
 </resources>

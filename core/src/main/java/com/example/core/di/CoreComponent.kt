@@ -72,6 +72,10 @@ interface CoreComponent {
 
     fun deleteAspirantUseCase(): DeleteAspirantUseCase
 
+    fun updateAspirantGradeUseCase(): UpdateAspirantGradeUseCase
+
+    fun updateTaskUseCase(): UpdateTasksUseCase
+
     fun updateResearchUseCase(): UpdateResearchUseCase
 
     fun modifySupervisorUseCase(): ModifySupervisorUseCase

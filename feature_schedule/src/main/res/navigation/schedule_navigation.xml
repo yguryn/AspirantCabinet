@@ -28,6 +28,10 @@
     <fragment
         android:id="@+id/modifyEventFragment"
         android:name="com.example.feature_schedule.modifyevent.ModifyEventFragment"
-        android:label="ModifyEventFragment" />
+        android:label="ModifyEventFragment" >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="example://modifyevent/{eventId}" />
+    </fragment>
 
 </navigation>

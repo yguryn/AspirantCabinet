@@ -3,6 +3,7 @@ package com.example.core.model
 import android.os.Parcelable
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @Parcelize
 data class Aspirant(
@@ -16,7 +17,7 @@ data class Aspirant(
     var faculty: String = "",
     var educationForm: String = "",
     var diplomaNumber: String = "",
-    var birthday: Long = 0L,
+    var birthday: Date = Date(0),
     var paymentType: String = "",
     var group: String = "",
     var supervisorId: String = "",
@@ -24,5 +25,6 @@ data class Aspirant(
     var phone: String = "",
     var isBudget: Boolean = false,
     var isConfirmed: Boolean = false,
-    var researchId: String = ""
+    var researchId: String = "",
+    var grade: Int = 0
 ): Parcelable

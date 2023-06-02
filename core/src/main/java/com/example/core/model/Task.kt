@@ -1,3 +1,9 @@
 package com.example.core.model
 
-data class Task(val a: String)
+import java.util.*
+
+data class Task(
+    var name: String = "",
+    var date: Date = Date(0),
+    var isDone: Boolean = false
+)

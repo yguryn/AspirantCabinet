@@ -1,22 +1,18 @@
 package com.example.feature_supervisor_research.aspirantlist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.aspirantusecase.AddAspirantUseCase
+import com.example.core.aspirantusecase.UpdateAspirantGradeUseCase
 import com.example.core.model.Aspirant
-import com.example.core.model.Research
-import com.example.core.researchUseCase.GetResearchByIdUseCase
-import com.example.core.supervisorusecases.AddSupervisorUseCase
 import com.example.core.supervisorusecases.GetAspirantsBySupervisorUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AspirantListViewModel @Inject constructor(
     private val getAspirantsBySupervisorUseCase: GetAspirantsBySupervisorUseCase,
-    private val getResearchByIdUseCase: GetResearchByIdUseCase
+    private val updateAspirantGradeUseCase: UpdateAspirantGradeUseCase
 ) : ViewModel() {
 
     private var _aspirant = MutableLiveData<List<Aspirant>>()
@@ -24,10 +20,9 @@ class AspirantListViewModel @Inject constructor(
         get() = _aspirant
 
 
-//    fun addUsers() {
-//        addAspirantUseCase.execute()
-//        addSupervisorUseCase.execute()
-//    }
+    fun updateAspirantGrade(aspirant: Aspirant) {
+        updateAspirantGradeUseCase.execute(aspirant)
+    }
 
     fun check() {
         viewModelScope.launch {

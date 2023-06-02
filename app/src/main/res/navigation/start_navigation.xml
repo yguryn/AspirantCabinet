@@ -30,6 +30,9 @@
     <action
         android:id="@+id/go_to_aspirant_research"
         app:destination="@id/supervisor_research_navigation" />
+    <action
+        android:id="@+id/go_to_event_list"
+        app:destination="@id/event_list_navigation" />
 
     <include app:graph="@navigation/login_navigation" />
     <include app:graph="@navigation/profile_navigation" />
@@ -38,5 +41,6 @@
     <include app:graph="@navigation/administrator_navigation" />
     <include app:graph="@navigation/supervisor_administrator_navigation" />
     <include app:graph="@navigation/supervisor_research_navigation" />
+    <include app:graph="@navigation/event_list_navigation" />
 
 </navigation>

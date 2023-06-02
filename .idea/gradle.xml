@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature_administrator" />
+            <option value="$PROJECT_DIR$/feature_events_list" />
             <option value="$PROJECT_DIR$/feature_login" />
             <option value="$PROJECT_DIR$/feature_profile" />
             <option value="$PROJECT_DIR$/feature_research" />

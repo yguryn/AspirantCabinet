@@ -2,9 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginTop="6dp"
+    android:backgroundTint="@android:color/white"
+    android:background="?android:attr/selectableItemBackground"
     android:elevation="60dp"
     android:foreground="?android:attr/selectableItemBackground"
     app:layout_constraintEnd_toEndOf="parent"
@@ -13,16 +15,41 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/taskNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="Проаналізувати наявні аналоги"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/doneDateTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/doneDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="05-03-2023"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/taskNameTextView"
+            app:layout_constraintStart_toEndOf="@+id/taskNameTextView"
+            app:layout_constraintEnd_toStartOf="@id/taskStatusImageView"
+            app:layout_constraintTop_toTopOf="@+id/taskNameTextView" />
+
+        <ImageView
+            android:id="@+id/taskStatusImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="Image task status"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

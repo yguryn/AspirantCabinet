@@ -1,15 +1,13 @@
 package com.example.core.supervisorusecases
 
-import com.example.core.di.AspirantCollection
 import com.example.core.di.SupervisorCollection
-import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
 import com.google.firebase.firestore.CollectionReference
 import javax.inject.Inject
 
 class ModifySupervisorUseCase @Inject constructor(
     @SupervisorCollection
-    private val booksRef: CollectionReference,
+    private val supervisorRef: CollectionReference,
 ) {
 
     fun execute(supervisor: Supervisor) {
@@ -21,6 +19,6 @@ class ModifySupervisorUseCase @Inject constructor(
             "email" to supervisor.email,
             "faculty" to supervisor.faculty,
         )
-        booksRef.document(supervisor.id).update(data)
+        supervisorRef.document(supervisor.id).update(data)
     }
 }

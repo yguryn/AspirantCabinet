@@ -89,7 +89,7 @@ class LoginFragment : Fragment() {
 
                 viewModel.supervisor.observe(viewLifecycleOwner) {
                     viewModel.writeUserInfo(it.id, "Supervisor")
-                    findNavController().navigate(R.id.go_to_schedule)
+                    findNavController().navigate(R.id.go_to_event_list)
                 }
 
                 viewModel.administrator.observe(viewLifecycleOwner) {

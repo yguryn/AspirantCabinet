@@ -8,12 +8,12 @@ import javax.inject.Inject
 
 class GetAspirantByIdUseCase @Inject constructor(
     @AspirantCollection
-    private val booksRef: CollectionReference,
+    private val aspirantRef: CollectionReference,
 ) {
     suspend fun execute(id: String): Aspirant {
         val deferred = CompletableDeferred<Aspirant>()
 
-        booksRef.document(id).get()
+        aspirantRef.document(id).get()
             .addOnSuccessListener { document ->
                 val aspirant = document.toObject(Aspirant::class.java)
                 aspirant?.id = document.id

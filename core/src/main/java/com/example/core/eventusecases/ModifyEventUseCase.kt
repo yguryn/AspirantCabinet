@@ -1,6 +1,5 @@
 package com.example.core.eventusecases
 
-import android.util.Log
 import com.example.core.di.EventCollection
 import com.example.core.model.Event
 import com.google.firebase.firestore.CollectionReference
@@ -18,7 +17,6 @@ class ModifyEventUseCase @Inject constructor(
             "event_start" to event.event_start,
             "event_end" to event.event_end
         )
-        Log.d("TTT", "ID${event.id}")
         booksRef.document(event.id).update(data)
     }
 }

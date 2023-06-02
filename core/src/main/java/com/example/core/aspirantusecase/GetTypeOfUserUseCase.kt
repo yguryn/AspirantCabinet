@@ -8,12 +8,12 @@ import javax.inject.Inject
 
 class GetTypeOfUserUseCase @Inject constructor(
     @AspirantCollection
-    private val booksRef: CollectionReference,
+    private val aspirantRef: CollectionReference,
 ) {
     suspend fun execute(email: String): Aspirant {
         val deferred = CompletableDeferred<Aspirant>()
 
-        booksRef.whereEqualTo("email", email).get()
+        aspirantRef.whereEqualTo("email", email).get()
             .addOnSuccessListener { querySnapshot ->
                 if (querySnapshot.documents.isNotEmpty()) {
                     val aspirant = querySnapshot.documents[0].toObject(Aspirant::class.java)

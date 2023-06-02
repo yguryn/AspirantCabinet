@@ -18,7 +18,12 @@
         </action>
         <action
             android:id="@+id/action_aspirantList_to_addNewTask"
-            app:destination="@id/addNewTaskFragment"/>
+            app:destination="@id/addNewTaskFragment">
+            <argument
+                android:name="name"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
