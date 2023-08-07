@@ -7,13 +7,16 @@ import com.example.feature_supervisor_research.aspirantdetails.AspirantDetailsFr
 import com.example.feature_supervisor_research.aspirantdetails.di.AspirantDetailsModule
 import com.example.feature_supervisor_research.aspirantlist.AspirantListFragment
 import com.example.feature_supervisor_research.aspirantlist.di.AspirantListModule
+import com.example.feature_supervisor_research.indplan.IndPlanListFragment
+import com.example.feature_supervisor_research.indplan.di.IndPlanListModule
 import dagger.Component
 
 @Component(
     modules = [
         AspirantListModule::class,
         AspirantDetailsModule::class,
-        AddNewTaskModule::class
+        AddNewTaskModule::class,
+        IndPlanListModule::class
     ],
     dependencies = [CoreComponent::class]
 )
@@ -25,4 +28,6 @@ interface FragmentsComponent {
     fun inject(aspirantDetailsFragment: AspirantDetailsFragment)
 
     fun inject(addNewTaskFragment: AddNewTaskFragment)
+
+    fun inject(indPlanListFragment: IndPlanListFragment)
 }

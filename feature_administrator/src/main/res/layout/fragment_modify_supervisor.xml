@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/aspirantListToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,12 +26,12 @@
 
             <Button
                 android:id="@+id/modifySupervisorButton"
-                style="@style/DefaultButtonStyle"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="50dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/button_yellow_border"
+                android:backgroundTint="@color/brand_yellow"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="Зберегти"
                 android:textColor="@color/black"
@@ -40,10 +40,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/nameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         android:hint="Ім'я"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout10" />
@@ -67,14 +67,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/surnameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Прізвище"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameEditText" />
@@ -89,14 +89,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/surnameEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/middleNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="По батькові"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/surnameEditText" />
@@ -111,14 +111,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/middleNameEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/phoneNumberEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="09123456789"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/middleNameEditText" />
@@ -133,14 +133,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/emailNumberEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="examle@gmail.com"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText" />
@@ -155,14 +155,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailNumberEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/facultyEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Факультет"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:theme="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailNumberEditText" />
@@ -187,6 +187,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/facultyEditText" />
+
+    <View
+        android:id="@+id/divider7"
+        style="@style/Divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errorTextView" />
 
     <LinearLayout
         android:id="@+id/containerSupervisorDelete"

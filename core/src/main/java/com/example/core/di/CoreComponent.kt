@@ -3,12 +3,10 @@ package com.example.core.di
 import android.content.Context
 import com.example.core.administratorusecase.CheckIsAdministratorUseCase
 import com.example.core.aspirantusecase.*
-import com.example.core.eventusecases.DeleteEventUseCase
-import com.example.core.eventusecases.GetAllEventsUseCase
-import com.example.core.eventusecases.GetEventByIdUseCase
-import com.example.core.eventusecases.ModifyEventUseCase
+import com.example.core.eventusecases.*
 import com.example.core.researchUseCase.*
 import com.example.core.supervisorusecases.*
+import com.example.core.utils.ResourceManager
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.CollectionReference
 import dagger.Component
@@ -82,5 +80,9 @@ interface CoreComponent {
 
     fun deleteSupervisorUseCase(): DeleteSupervisorUseCase
 
+    fun getEventsForDateUseCase(): GetEventsForDateUseCase
+
     fun sharedPrefHelper(): SharedPreferencesHelper
+
+    fun resourceManager(): ResourceManager
 }

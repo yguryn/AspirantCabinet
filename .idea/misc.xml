@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1545" />
         <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/drawable/nav_item_color_state.xml" value="0.1" />
+        <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/drawable/rounded_background.xml" value="0.168" />
         <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/layout/item_my.xml" value="0.25343999226562525" />
         <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/menu/bottom_nav_admin_menu.xml" value="0.21666666666666667" />
         <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/menu/bottom_nav_menu.xml" value="0.15208333333333332" />
         <entry key="..\:/diplom/aspirant-cabinet/app/src/main/res/menu/bottom_nav_supervisor_menu.xml" value="0.215625" />
@@ -14,15 +17,19 @@
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_add_supervisor.xml" value="0.17604166666666668" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_administrator_list.xml" value="0.15208333333333332" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_aspirant_list.xml" value="0.12135416666666667" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_modify_aspirant.xml" value="0.15806159420289856" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_modify_supervisor.xml" value="0.19021739130434784" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/fragment_supervisor_list.xml" value="0.1625" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/item_aspirant.xml" value="0.1" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/item_supervisor.xml" value="0.1625" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/supervisor_selector_dialog.xml" value="0.140625" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/supervisor_selector_item.xml" value="0.12907608695652173" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_administrator/src/main/res/layout/supervisor_selector_otem.xml" value="0.13958333333333334" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_events_list/src/main/res/drawable/popup_menu_background.xml" value="0.139" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_events_list/src/main/res/layout/event_list_fragment.xml" value="0.16802536231884058" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_events_list/src/main/res/layout/fragment_event_list.xml" value="0.27294685990338163" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_events_list/src/main/res/layout/item_event_short.xml" value="0.25343999226562525" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_events_list/src/main/res/menu/days_menu.xml" value="0.15885416666666666" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_login/src/main/res/layout/fragment_login.xml" value="0.18885869565217392" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_login/src/main/res/layout/fragment_registration.xml" value="0.12135416666666667" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_profile/src/main/res/drawable/circle.xml" value="0.1505" />
@@ -32,19 +39,23 @@
         <entry key="..\:/diplom/aspirant-cabinet/feature_research/src/main/res/drawable/baseline_delete_24.xml" value="0.1235" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/drawable/button_borders.xml" value="0.1505" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/custom_notification_dialog.xml" value="0.19199999414062519" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/fragment_modify_event.xml" value="0.10274431057563588" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/fragment_new_event.xml" value="0.1743659420289855" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/fragment_schedule.xml" value="0.1" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/item_calendar.xml" value="0.12760416666666666" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_schedule/src/main/res/layout/single_room_event.xml" value="0.19199999414062519" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/drawable/dialog_back.xml" value="0.139" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/add_task_dialog.xml" value="0.1743659420289855" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/change_grade_dialog.xml" value="0.1743659420289855" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/fragment_add_new_task.xml" value="0.2998986828774063" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/fragment_aspirant_list.xml" value="0.11474164133738601" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/fragment_aspirant_research.xml" value="0.12760416666666666" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/fragment_aspirant_research_details.xml" value="0.1265625" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/fragment_ind_plan.xml" value="0.16822916666666668" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/item_aspirant.xml" value="0.1265625" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/item_aspirant2.xml" value="0.38399998828125037" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/item_details_research.xml" value="0.12760416666666666" />
+        <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/item_ind_plan.xml" value="0.16822916666666668" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/item_task.xml" value="0.12771739130434784" />
         <entry key="..\:/diplom/aspirant-cabinet/feature_supervisor_research/src/main/res/layout/weq.xml" value="0.12760416666666666" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/background_selectable.xml" value="0.149" />
@@ -57,6 +68,8 @@
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/fab_plus_icon.xml" value="0.1" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.1235" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_birthday.xml" value="0.1155" />
+        <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_check.xml" value="0.12" />
+        <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_check_white.xml" value="0.12" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_document.xml" value="0.1155" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_education.xml" value="0.1155" />
         <entry key="..\:/diplom/aspirant-cabinet/ui/src/main/res/drawable/ic_event_list.xml" value="0.1885" />

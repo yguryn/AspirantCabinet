@@ -19,7 +19,8 @@ class UpdateResearchUseCase @Inject constructor(
             "subject_research" to research.subjectResearch,
             "listOfArticles" to research.listOfArticles,
             "listOfThesis" to research.listOfThesis,
-            "listOfIndividualPlan" to research.listOfIndividualPlan
+            "listOfIndividualPlan" to research.listOfIndividualPlan,
+            "listOfTasks" to research.listOfTasks
         )
         researchesRef.document(research.id).update(data)
     }

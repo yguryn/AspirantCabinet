@@ -26,7 +26,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/facultyEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,14 +49,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facultyEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/groupEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Група"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
-
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +71,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupEditText" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/specializationEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -171,9 +170,9 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/brand_yellow"
         android:text="Додати аспіранта"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputErrorTextView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,8 +41,7 @@ class AddTaskDialog(private val addTaskListener: (String, Date) -> Unit) : Dialo
             val datePickerDialog = DatePickerDialog(
                 it.context,
                 { _, selectedYear, selectedMonth, selectedDayOfMonth ->
-                    // Add 1 to month because months are indexed from 0
-                    selectedDate = GregorianCalendar(selectedYear, selectedMonth + 1, selectedDayOfMonth).time
+                    selectedDate = GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
                     binding.choseDateEditText.setText(selectedDate.formatToString())
                     Log.d("TTT","${selectedDate.formatToString()}")
                 },
@@ -57,5 +56,6 @@ class AddTaskDialog(private val addTaskListener: (String, Date) -> Unit) : Dialo
         return dialogBuilder.create()
     }
 
+    override fun getTheme() = R.style.RoundedCornersDialog
 
 }

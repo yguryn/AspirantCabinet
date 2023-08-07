@@ -12,7 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.di.CoreInjectHelper
+import com.example.core.model.Event
 import com.example.core.model.Task
+import com.example.feature_supervisor_research.R
 import com.example.feature_supervisor_research.addnewtask.recycler.TaskAdapter
 import com.example.feature_supervisor_research.aspirantdetails.AspirantDetailsViewModel
 import com.example.feature_supervisor_research.aspirantlist.ChangeGradeDialog
@@ -51,20 +53,27 @@ class AddNewTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val researchId = arguments?.getString("123")
         val studentName = arguments?.getString("name")
+        val aspirantId = arguments?.getString("aspirant_id")
         binding.noTasksImageView.isVisible = true
         binding.addTaskFloatingButton.setOnClickListener {
-            AddTaskDialog() {task, selectedDate ->
-                listOfTasks.add(Task(task, selectedDate,false))
+            AddTaskDialog() { task, selectedDate ->
+                listOfTasks.add(Task(task, selectedDate, false))
                 viewModel.updateTasksUseCase(listOfTasks, researchId!!)
                 viewModel.getResearchByIdUseCase(researchId)
                 taskAdapter.listOfTasks.submitList(listOfTasks)
+
+                viewModel.addEvent(task, selectedDate, aspirantId!!.trim())
             }.show(
                 childFragmentManager,
                 null
             )
         }
+
+
+
+
         viewModel.research.observe(viewLifecycleOwner) {
-            if(it.listOfTasks.size > 0) {
+            if (it.listOfTasks.size > 0) {
                 binding.noTasksImageView.isVisible = false
             }
             listOfTasks = it.listOfTasks
@@ -79,11 +88,12 @@ class AddNewTaskFragment : Fragment() {
             taskAdapter.listOfTasks.submitList(listOfTasks)
             viewModel.updateTasksUseCase(listOfTasks, researchId)
             viewModel.getResearchByIdUseCase(researchId)
+
+
         }
 
         binding.tasksRecyclerView.adapter = taskAdapter
     }
-
 
 
     private fun initDagger() {

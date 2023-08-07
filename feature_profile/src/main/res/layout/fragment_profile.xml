@@ -21,7 +21,15 @@
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color"
             app:title="Профіль"
-            app:titleTextColor="@color/black" />
+            app:titleTextColor="@color/black">
+
+            <ImageView
+                android:id="@+id/logoutImageView"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_baseline_logout_24" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -289,7 +297,6 @@
                     android:textSize="18dp" />
 
             </LinearLayout>
-
 
 
             <LinearLayout

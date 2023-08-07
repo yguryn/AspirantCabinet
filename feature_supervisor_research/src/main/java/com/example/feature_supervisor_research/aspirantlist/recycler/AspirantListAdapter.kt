@@ -13,6 +13,7 @@ class AspirantListAdapter(
     val listener: (Aspirant) -> Unit,
     val taskListener: (Aspirant) -> Unit,
     val gradeChangedListener: (Aspirant) -> Unit,
+    val indPlanListener: (Aspirant) -> Unit,
     val fragManager: FragmentManager
 ) :
     RecyclerView.Adapter<AspirantListAdapter.ViewHolder>() {
@@ -32,6 +33,9 @@ class AspirantListAdapter(
                 }
                 reviewTasksTextView.setOnClickListener {
                     taskListener.invoke(aspirant)
+                }
+                indPlanTextView.setOnClickListener {
+                    indPlanListener.invoke(aspirant)
                 }
                 estimateTextView.text = "Загальна оцінка: ${aspirant.grade}"
                 estimateTextView.setOnClickListener {

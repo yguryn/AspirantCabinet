@@ -1,5 +1,6 @@
 package com.example.core.eventusecases
 
+import android.util.Log
 import com.example.core.di.EventCollection
 import com.example.core.model.Event
 import com.example.core.utils.SharedPreferencesHelper
@@ -16,7 +17,7 @@ class GetAllEventsUseCase @Inject constructor(
     suspend fun execute(): MutableList<Event> {
         val deferred = CompletableDeferred<MutableList<Event>>()
         val userId = sharedPreferencesHelper.getString("USER_ID")
-        eventRef.whereEqualTo("user_id",userId).get()
+        eventRef.whereEqualTo("user_id",userId?.trim()).get()
             .addOnSuccessListener { documents ->
                 val events = mutableListOf<Event>()
                 for (document in documents) {
@@ -25,6 +26,7 @@ class GetAllEventsUseCase @Inject constructor(
                     events.add(event)
                 }
                 deferred.complete(events)
+                Log.d("TTT","curEvents$events")
             }
             .addOnFailureListener { exception ->
                 deferred.completeExceptionally(exception)

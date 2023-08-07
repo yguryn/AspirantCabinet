@@ -16,6 +16,7 @@ import com.example.feature_administrator.R
 import com.example.feature_administrator.aspirantlist.di.DaggerAdministratorComponent
 import com.example.feature_administrator.aspirantlist.listOfAspirants.recycler.AspirantAdapter
 import com.example.feature_administrator.databinding.FragmentAspirantListBinding
+import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
 
 class AspirantListFragment : Fragment() {
@@ -43,6 +44,11 @@ class AspirantListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.logoutAdminImageView.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().popBackStack()
+        }
 
         aspirantAdapter = AspirantAdapter() {
             val bundle = Bundle().apply {

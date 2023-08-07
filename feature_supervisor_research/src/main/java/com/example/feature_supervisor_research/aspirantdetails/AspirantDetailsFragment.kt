@@ -52,7 +52,7 @@ class AspirantDetailsFragment : Fragment() {
         viewModel.getInformation(researchId!!)
         viewModel.getResearchByIdUseCase(researchId)
         viewModel.research.observe(viewLifecycleOwner) {
-            binding.objectResearchTextView2.text = "Тема дослідження: ${it.objectResearch}"
+            binding.objectResearchTextView2.text = "Тема дослідження: \n${it.objectResearch}"
         }
         viewModel.listOfResearch.observe(viewLifecycleOwner) {
             listOfArticles = it as MutableList<Article>

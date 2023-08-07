@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.feature_profile.di.DaggerProfileComponent
+import com.google.firebase.auth.FirebaseAuth
 import com.postgraduate.cabinet.feature_profile.R
 import com.postgraduate.cabinet.feature_profile.databinding.FragmentProfileBinding
 import java.text.SimpleDateFormat
@@ -67,6 +68,10 @@ class ProfileFragment : Fragment() {
             Log.d("TTT","$research")
             binding.numberOfWorksTextView.text = research.listOfArticles.size.toString()
             binding.researchTextView.text = "${research.objectResearch}"
+        }
+        binding.logoutImageView.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().popBackStack()
         }
     }
 

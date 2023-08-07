@@ -58,7 +58,7 @@ fun AddResearchScreen(
 
         Button(
             onClick = {
-                researchViewModel.addEvent(
+                researchViewModel.addResearch(
                     Research(
                         objectResearch = objectValue,
                         subjectResearch = subjectValue

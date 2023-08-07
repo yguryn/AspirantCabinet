@@ -22,7 +22,27 @@
         android:textStyle="bold"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_color"
-        app:title="Найближчі події"/>
+        app:title="Найближчі події">
+
+
+        <ImageView
+            android:id="@+id/logoutSuperImageView"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_gravity="end"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_logout_24" />
+
+        <ImageView
+            android:id="@+id/moreImageView"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@drawable/ic_dots_more"
+            android:layout_gravity="end" />
+
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

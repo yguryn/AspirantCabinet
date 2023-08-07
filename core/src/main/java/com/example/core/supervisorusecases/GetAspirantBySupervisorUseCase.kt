@@ -1,5 +1,6 @@
 package com.example.core.supervisorusecases
 
+import android.util.Log
 import com.example.core.di.AspirantCollection
 import com.example.core.di.SupervisorCollection
 import com.example.core.model.Aspirant
@@ -30,6 +31,8 @@ class GetAspirantsBySupervisorUseCase @Inject constructor(
                 .addOnSuccessListener { asp ->
                     val aspirant = asp.toObject(Aspirant::class.java)
                     aspirant?.id = aspirantId
+                    Log.d("TTT","asp.id ${aspirant?.id}")
+                    Log.d("TTT","aspIdd ${aspirantId}")
                     deferredAspirant.complete(aspirant)
                 }
         }

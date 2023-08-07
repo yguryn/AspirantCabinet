@@ -48,6 +48,16 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            if(viewModel.getUserInfo() == "Aspirant") {
+                findNavController().navigate(R.id.go_to_profile)
+            } else if(viewModel.getUserInfo() == "Supervisor") {
+                findNavController().navigate(R.id.go_to_event_list)
+            } else if(viewModel.getUserInfo() == "Administrator") {
+                findNavController().navigate(R.id.go_to_administrator)
+            }
+        }
         binding.logInButton.setOnClickListener {
             login()
         }

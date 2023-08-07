@@ -11,7 +11,7 @@ class GetEventByIdUseCase @Inject constructor(
 ) {
     fun execute(documentId: String, callback: (event: Event) -> Unit) {
         var event: Event
-        eventRef.document(documentId).get().addOnSuccessListener {
+        eventRef.document(documentId.trim()).get().addOnSuccessListener {
             event = it.toObject(Event::class.java)!!
             callback(event)
         }

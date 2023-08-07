@@ -2,6 +2,7 @@ package com.example.feature_supervisor_research.addnewtask.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.model.Task
@@ -22,9 +23,9 @@ class TaskAdapter(private val deleteTaskListener: (Task) -> Unit) :
                 taskNameTextView.text = task.name
                 doneDateTextView.text = task.date.formatToString()
                 if (task.isDone) {
-                    taskStatusImageView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.ic_icon_done)
+                    taskStatusImageView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.ic_check)
                 } else {
-                    taskStatusImageView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.ic_in_progress)
+                    taskStatusImageView.setBackgroundResource(com.postgraduate.cabinet.ui.R.drawable.ic_check_white)
                 }
                 root.setOnLongClickListener {
                     deleteTaskListener.invoke(task)

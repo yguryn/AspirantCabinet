@@ -62,11 +62,9 @@
 
             <Button
                 android:id="@+id/buttonSaveNewEvent"
-                style="@style/DefaultButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:lineHeight="16sp"
                 android:text="Зберегти"
                 android:backgroundTint="@color/brand_yellow"
@@ -83,7 +81,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginBottom="8dp"
                 android:lineHeight="24sp"
-                android:text="New Event"
+                android:text="Нова Подія"
                 android:textColor="@color/title_text_color"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

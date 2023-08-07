@@ -26,6 +26,13 @@
         app:titleTextColor="@color/black">
 
         <ImageView
+            android:id="@+id/logoutAdminImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_logout_24" />
+
+        <ImageView
             android:id="@+id/addAspirantImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

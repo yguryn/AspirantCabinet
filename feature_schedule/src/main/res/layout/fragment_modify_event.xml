@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/dateEndTextView"
-        style="@style/ModifyTextViewStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="75dp"
         android:layout_marginTop="16dp"
         android:text="Wen, 23 May"
@@ -61,12 +61,10 @@
 
             <Button
                 android:id="@+id/buttonModifyAppBar"
-                style="@style/DefaultButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/button_yellow_border"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:backgroundTint="@color/brand_yellow"
                 android:text="Зберегти"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -81,7 +79,7 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginBottom="8dp"
                 android:lineHeight="24sp"
-                android:text="Event Save"
+                android:text="Редагувати Подію"
                 android:textColor="@color/title_text_color"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

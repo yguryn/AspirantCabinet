@@ -24,6 +24,14 @@
                 android:defaultValue=""
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_aspirantList_to_indPlanList"
+            app:destination="@id/indPlanListFragment">
+            <argument
+                android:name="name"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -35,5 +43,10 @@
         android:id="@+id/addNewTaskFragment"
         android:name="com.example.feature_supervisor_research.addnewtask.AddNewTaskFragment"
         android:label="AddNewTaskFragment" />
+
+    <fragment
+        android:id="@+id/indPlanListFragment"
+        android:name="com.example.feature_supervisor_research.indplan.IndPlanListFragment"
+        android:label="IndPlanListFragment" />
 
 </navigation>

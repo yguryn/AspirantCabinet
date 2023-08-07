@@ -22,18 +22,18 @@ class EventListViewModel @Inject constructor(
     val events: LiveData<List<Event>>
         get() = _events
 
-    fun getUpcomingEventsById() {
+    fun getUpcomingEventsById(countOfDays: Int) {
         viewModelScope.launch {
             val allEvents = getAllEventsUseCase.execute()
-            _events.value = filterEventsByNext7Days(allEvents).sortedBy { it.event_start }
+            _events.value = filterEventsByNextDays(allEvents, countOfDays).sortedBy { it.event_start }
         }
     }
 
-    fun filterEventsByNext7Days(events: List<Event>): List<Event> {
+    fun filterEventsByNextDays(events: List<Event>, countOfDays: Int): List<Event> {
         val currentDate = Date()
         val calendar = Calendar.getInstance()
         calendar.time = currentDate
-        calendar.add(Calendar.DAY_OF_YEAR, 7) // Додати 7 днів до поточної дати
+        calendar.add(Calendar.DAY_OF_YEAR, countOfDays)
 
         val next7Days = calendar.time
 
@@ -47,4 +47,6 @@ class EventListViewModel @Inject constructor(
 
         return filteredEvents
     }
+
+    fun getUserType() = preferencesHelper.getString("USER_TYPE")
 }

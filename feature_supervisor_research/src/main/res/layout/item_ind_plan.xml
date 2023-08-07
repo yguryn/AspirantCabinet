@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTint="@android:color/white"
+    app:cardElevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/content_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_alignParentStart="true"
+            android:textSize="18sp"
+            android:text="Зміст роботи" />
+
+        <TextView
+            android:id="@+id/deadline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@+id/content_text"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:text="Термін" />
+
+        <TextView
+            android:id="@+id/form_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@+id/deadline_text"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:text="Форма" />
+
+        <ImageView
+            android:id="@+id/isDoneImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_check" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

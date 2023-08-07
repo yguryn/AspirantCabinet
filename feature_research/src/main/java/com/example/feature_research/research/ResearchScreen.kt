@@ -163,14 +163,15 @@ fun ArticleCard(
                         )
                     }
                 },
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = com.postgraduate.cabinet.ui.R.color.brand_yellow)),
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-            ) { Text(text = "Надіслати", color = colorResource(id = com.postgraduate.cabinet.ui.R.color.brand_yellow)) }
+            ) { Text(text = "Надіслати", color = Color.Black) }
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Список статей:")
+                Text(text = "Список робіт:")
             }
             ListOfArticles(research.value.listOfArticles, semester) {
                 articleDeleteListener.invoke(it)

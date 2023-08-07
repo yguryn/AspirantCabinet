@@ -10,8 +10,5 @@
         android:icon="@drawable/baseline_people_24"
         android:title="@string/supervisor" />
 
-    <item
-        android:id="@+id/go_to_administrator_addNewTask"
-        android:icon="@drawable/ic_add_task"
-        android:title="@string/task" />
+
 </menu>

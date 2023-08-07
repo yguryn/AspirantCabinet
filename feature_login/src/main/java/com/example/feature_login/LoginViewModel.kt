@@ -14,6 +14,7 @@ import com.example.core.model.Event
 import com.example.core.model.Supervisor
 import com.example.core.supervisorusecases.CheckIsSupervisorUseCase
 import com.example.core.utils.SharedPreferencesHelper
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -59,9 +60,24 @@ class LoginViewModel @Inject constructor(
     fun writeUserInfo(id: String, type: String) {
         sharedPreferencesHelper.putString("USER_ID", id)
         sharedPreferencesHelper.putString("USER_TYPE", type)
+        val token = sharedPreferencesHelper.getString("FCM_TOKEN")
+        Log.d("TTT","$token")
+        if (token != null) {
+            if (type == "Aspirant") {
+                val userRef = FirebaseFirestore.getInstance().document("aspirant/$id")
+                userRef.update("fcmToken", token)
+            } else if (type == "Supervisor") {
+                val userRef = FirebaseFirestore.getInstance().document("supervisor/$id")
+                userRef.update("fcmToken", token)
+            }
+            val userRef = FirebaseFirestore.getInstance().document("$type/$id")
+            userRef.update("fcmToken", token)
+        }
     }
 
     fun writeResearch(researchId: String) {
         sharedPreferencesHelper.putString("RESEARCH_ID", researchId)
     }
+
+    fun getUserInfo() = sharedPreferencesHelper.getString("USER_TYPE")
 }

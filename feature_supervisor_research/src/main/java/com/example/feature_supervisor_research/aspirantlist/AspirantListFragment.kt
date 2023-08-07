@@ -1,6 +1,7 @@
 package com.example.feature_supervisor_research.aspirantlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,16 +52,25 @@ class AspirantListFragment : Fragment() {
         }, {
             val args = Bundle().apply {
                 putString("123", it.researchId)
+                putString("aspirant_id", it.id)
                 putString("name", "${it.surname} ${it.name}")
             }
             findNavController().navigate(R.id.action_aspirantList_to_addNewTask, args)
         }, {
           viewModel.updateAspirantGrade(it)
+        }, {
+            val args = Bundle().apply {
+                putString("123", it.researchId)
+                putString("aspirant_id", it.id)
+                putString("name", "${it.surname} ${it.name}")
+            }
+            findNavController().navigate(R.id.action_aspirantList_to_indPlanList, args)
         }, childFragmentManager)
         binding.aspirantRecycler.adapter = aspirantListAdapter
         viewModel.check()
         viewModel.aspirant.observe(viewLifecycleOwner) {
             aspirantListAdapter.listOfAspirants.submitList(it)
+            Log.d("TTT","asp $it")
         }
     }
 

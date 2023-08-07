@@ -24,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:textStyle="bold"
             android:text="Проаналізувати наявні аналоги"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"

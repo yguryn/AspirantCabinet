@@ -43,9 +43,9 @@ class AddAspirantFragment : Fragment(R.layout.fragment_add_aspirant) {
 
     private fun checkIsAllDataIsCorrect(): Boolean {
         binding.apply {
-            return (nameEditText.text.isNotEmpty() && surnameEditText.text.isNotEmpty()
-                    && middleNameEditText.text.isNotEmpty() && phoneNumberEditText.text.isNotEmpty() &&
-                    emailNumberEditText.text.isNotEmpty())
+            return (nameEditText.text!!.isNotEmpty() && surnameEditText.text!!.isNotEmpty()
+                    && middleNameEditText.text!!.isNotEmpty() && phoneNumberEditText.text!!.isNotEmpty() &&
+                    emailNumberEditText.text!!.isNotEmpty())
         }
     }
 

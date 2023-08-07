@@ -6,7 +6,5 @@ object Constants {
     const val HOURS_FORMAT = "HH"
     const val MINUTES_FORMAT = "mm"
     const val PRESENT_DATE_FORMAT = "EEE, dd LLLL"
-    const val NOTIFICATION_NEVER = 0
-    const val NOTIFICATION_CUSTOM = 7
     const val DATE_PATTERN = "yyyy/MM/dd"
 }

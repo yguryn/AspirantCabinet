@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.core.model.Event
 import com.example.core.model.IndividualPlan
 import com.postgraduate.cabinet.ui.R
 import java.text.SimpleDateFormat
@@ -47,7 +48,6 @@ fun IndPlanScreen(
     var deadline by remember { mutableStateOf(Date()) }
     var form by remember { mutableStateOf("") }
     var editIndex by remember { mutableStateOf(-1) }
-    val context = LocalContext.current
 
     val researchListState = researchViewModel.listOfResearch.collectAsStateWithLifecycle()
     val currentResearch = researchListState.value
@@ -55,7 +55,7 @@ fun IndPlanScreen(
 
 
     Scaffold(
-        topBar = { AppBar() },
+//        topBar = { AppBar() },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 showDialog = true
@@ -68,9 +68,11 @@ fun IndPlanScreen(
             }
         },
         content = {
-            Column(modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.White)
+            ) {
                 if (showDialog) {
                     CustomDialog(
                         title = if (editIndex >= 0) "Редагувати зміст роботи" else "Додати зміст роботи",
@@ -80,10 +82,11 @@ fun IndPlanScreen(
                                 if (editIndex >= 0 && currentResearch != null) {
                                     currentResearch.listOfIndividualPlan[editIndex] = updatedWork
                                 } else {
-                                    currentResearch?.listOfIndividualPlan?.add(updatedWork)
+                                    currentResearch.listOfIndividualPlan?.add(updatedWork)
                                 }
-                                currentResearch?.let { researchViewModel.updateResearch(it) }
+                                currentResearch.let { researchViewModel.updateResearch(it) }
                                 showDialog = false
+                                researchViewModel.addEvent(content, deadline, form)
                             }
                         },
                         onCancel = {
@@ -91,6 +94,8 @@ fun IndPlanScreen(
                                 currentResearch.listOfIndividualPlan.removeAt(editIndex)
                                 currentResearch.let { researchViewModel.updateResearch(it) }
                             }
+                            showDialog = false
+                        }, onDismiss = {
                             showDialog = false
                         },
                         content = {
@@ -106,7 +111,6 @@ fun IndPlanScreen(
                                     initialDate = deadline,
                                     onDateChange = { deadline = it },
                                     label = { Text("Термін виконання") },
-                                    context
                                 )
 
                                 OutlinedTextField(
@@ -183,10 +187,11 @@ fun CustomDialog(
     title: String,
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
+    onDismiss: () -> Unit,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     AlertDialog(
-        onDismissRequest = onCancel,
+        onDismissRequest = onDismiss,
         title = { Text(title) },
         text = { Column(content = content) },
         confirmButton = {
@@ -219,12 +224,9 @@ fun DatePicker(
     initialDate: Date,
     onDateChange: (Date) -> Unit,
     label: @Composable () -> Unit,
-    context: Context
 ) {
-    // Define a new state variable to control the visibility of MyDatePicker
     var isDatePickerVisible by remember { mutableStateOf(false) }
 
-    // Define a new state variable to hold the current date
     val date = remember { mutableStateOf(initialDate.formatToString()) }
 
     OutlinedTextField(
@@ -235,38 +237,6 @@ fun DatePicker(
         readOnly = true,
         modifier = Modifier.clickable { isDatePickerVisible = true }
     )
-
-    if (isDatePickerVisible) {
-        MyDatePicker(
-            date = date.value,
-            setNewDate = {
-                val newDate = Date(it)
-                onDateChange(newDate)
-                date.value = newDate.formatToString()
-                isDatePickerVisible = false
-            }
-        )
-    }
-}
-
-@Composable
-fun DatePicker(
-    initialDate: Date,
-    onDateChange: (Date) -> Unit,
-    label: @Composable () -> Unit
-) {
-    var isDatePickerVisible by remember { mutableStateOf(false) }
-    val date = remember { mutableStateOf(initialDate.formatToString()) }
-
-    Box(modifier = Modifier.fillMaxWidth().clickable { isDatePickerVisible = true }) {
-        OutlinedTextField(
-            value = date.value,
-            onValueChange = {},
-            label = label,
-            readOnly = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
 
     if (isDatePickerVisible) {
         MyDatePicker(

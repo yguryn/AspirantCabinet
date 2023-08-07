@@ -77,8 +77,8 @@ class AddAspirantSecondStepFragment : Fragment() {
 
     private fun checkIsAllDataIsCorrect(): Boolean {
         binding.apply {
-            return (facultyEditText.text.isNotEmpty() && groupEditText.text.isNotEmpty()
-                    && specializationEditText.text.isNotEmpty() && paymentForm.text.isNotEmpty() &&
+            return (facultyEditText.text!!.isNotEmpty() && groupEditText.text!!.isNotEmpty()
+                    && specializationEditText.text!!.isNotEmpty() && paymentForm.text.isNotEmpty() &&
                     supervisorTextView.text != "Виберіть наукового керівника")
         }
     }

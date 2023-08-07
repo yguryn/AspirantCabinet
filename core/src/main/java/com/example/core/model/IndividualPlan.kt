@@ -5,5 +5,6 @@ import java.util.*
 data class IndividualPlan(
     val content: String = "",
     val deadline: Date = Date(0),
-    val form: String = ""
+    val form: String = "",
+    var isDone: Boolean = false
 )
