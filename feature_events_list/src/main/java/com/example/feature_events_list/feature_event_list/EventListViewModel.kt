@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.eventusecases.GetAllEventsUseCase
-import com.example.core.model.Aspirant
 import com.example.core.model.Event
+import com.example.core.utils.Constants.USER_TYPE
 import com.example.core.utils.SharedPreferencesHelper
 import kotlinx.coroutines.launch
 import java.util.*
@@ -25,11 +25,12 @@ class EventListViewModel @Inject constructor(
     fun getUpcomingEventsById(countOfDays: Int) {
         viewModelScope.launch {
             val allEvents = getAllEventsUseCase.execute()
-            _events.value = filterEventsByNextDays(allEvents, countOfDays).sortedBy { it.event_start }
+            _events.value =
+                filterEventsByNextDays(allEvents, countOfDays).sortedBy { it.event_start }
         }
     }
 
-    fun filterEventsByNextDays(events: List<Event>, countOfDays: Int): List<Event> {
+    private fun filterEventsByNextDays(events: List<Event>, countOfDays: Int): List<Event> {
         val currentDate = Date()
         val calendar = Calendar.getInstance()
         calendar.time = currentDate
@@ -44,9 +45,8 @@ class EventListViewModel @Inject constructor(
                 filteredEvents.add(event)
             }
         }
-
         return filteredEvents
     }
 
-    fun getUserType() = preferencesHelper.getString("USER_TYPE")
+    fun getUserType() = preferencesHelper.getString(USER_TYPE)
 }

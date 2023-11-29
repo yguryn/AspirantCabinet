@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="phone_icon_description">Phone Icon</string>
+    <string name="birthday_icon_description">Birthday Icon</string>
+    <string name="supervisor_icon_description">Supervisor Icon</string>
+    <string name="research_icon_description">Research Icon</string>
+    <string name="payment_icon_description">Payment Icon</string>
+    <string name="mark_icon_description">Mark Icon</string>
+    <string name="education_icon_description">Education Icon</string>
+    <string name="diploma_icon_description">Diploma Icon</string>
 </resources>

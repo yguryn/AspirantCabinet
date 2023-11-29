@@ -1,6 +1,5 @@
 package com.example.core.aspirantusecase
 
-import android.util.Log
 import com.example.core.di.AspirantCollection
 import com.example.core.model.Aspirant
 import com.google.firebase.firestore.CollectionReference
@@ -10,7 +9,6 @@ class UpdateAspirantGradeUseCase @Inject constructor(
     @AspirantCollection
     private val aspirantsRef: CollectionReference,
 ) {
-
     fun execute(aspirant: Aspirant) {
         val documentRef = aspirantsRef.document(aspirant.id.trim())
 
@@ -18,11 +16,5 @@ class UpdateAspirantGradeUseCase @Inject constructor(
         data["grade"] = aspirant.grade
 
         documentRef.update(data)
-            .addOnSuccessListener {
-                Log.d("TTT", "Grade updated successfully.")
-            }
-            .addOnFailureListener { e ->
-                Log.e("TTT", "Error updating grade: $e")
-            }
     }
 }

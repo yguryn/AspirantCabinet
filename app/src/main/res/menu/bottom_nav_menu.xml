@@ -5,7 +5,7 @@
     <item
         android:id="@+id/go_to_profile"
         android:icon="@drawable/ic_home"
-        android:title="Профіль" />
+        android:title="@string/profile" />
 
     <item
         android:id="@+id/go_to_event_list"

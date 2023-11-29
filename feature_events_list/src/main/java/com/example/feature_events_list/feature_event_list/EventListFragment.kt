@@ -1,7 +1,6 @@
 package com.example.feature_events_list.feature_event_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.di.CoreInjectHelper
+import com.example.core.utils.Constants.SUPERVISOR
 import com.example.feature_events_list.R
 import com.example.feature_events_list.databinding.FragmentEventListBinding
 import com.example.feature_events_list.di.DaggerEventListComponent
@@ -48,46 +48,68 @@ class EventListFragment : Fragment(R.layout.fragment_event_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.logoutSuperImageView.isVisible = viewModel.getUserType() == "Supervisor"
+        initializeUI()
+    }
+
+    private fun initializeUI() {
+        setupLogoutButton()
+        setupEventListAdapter()
+        setupMoreOptionsButton()
+    }
+
+    private fun setupLogoutButton() {
+        binding.logoutSuperImageView.isVisible = viewModel.getUserType() == SUPERVISOR
         binding.logoutSuperImageView.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             findNavController().popBackStack()
         }
+    }
 
-        eventListAdapter = EventListAdapter() {
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("example://modifyevent/$it".toUri())
-                .build()
-
-            findNavController().navigate(request)
+    private fun setupEventListAdapter() {
+        eventListAdapter = EventListAdapter {
+            navigateToModifyEvent(it)
         }
-        binding.upcomingEventsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.upcomingEventsRecyclerView.adapter = eventListAdapter
+        binding.upcomingEventsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = eventListAdapter
+        }
         viewModel.events.observe(viewLifecycleOwner) {
             eventListAdapter.listOfEvents.submitList(it)
         }
         viewModel.getUpcomingEventsById(countOfDays)
+    }
 
+    private fun navigateToModifyEvent(eventId: String) {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri("example://modifyevent/$eventId".toUri())
+            .build()
+        findNavController().navigate(request)
+    }
+
+    private fun setupMoreOptionsButton() {
         binding.moreImageView.setOnClickListener { view ->
-            val contextWrapper = ContextThemeWrapper(context, R.style.PopupMenuStyle)
-            val popupMenu = PopupMenu(contextWrapper, view)
-            popupMenu.menuInflater.inflate(R.menu.days_menu, popupMenu.menu)
-
-            val days = arrayOf("1 день", "7 днів", "30 днів")
-            val selectedDayIndex = days.indexOfFirst { it.contains(countOfDays.toString()) }
-            val selectedDay = if (selectedDayIndex != -1) selectedDayIndex else 0
-
-            popupMenu.menu.getItem(selectedDay).isChecked = true
-
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                val selectedDay = menuItem.title.toString().replace(Regex("[^\\d]"), "").toInt()
-                countOfDays = selectedDay
-                viewModel.getUpcomingEventsById(countOfDays)
-                true
-            }
-
-            popupMenu.show()
+            createAndShowPopupMenu(view)
         }
+    }
+
+    private fun createAndShowPopupMenu(anchor: View) {
+        val contextWrapper = ContextThemeWrapper(context, R.style.PopupMenuStyle)
+        val popupMenu = PopupMenu(contextWrapper, anchor)
+        popupMenu.menuInflater.inflate(R.menu.days_menu, popupMenu.menu)
+
+        val days = arrayOf(com.postgraduate.cabinet.ui.R.array.event_days)
+        val selectedDayIndex = days.indexOfFirst { it.toString().contains(countOfDays.toString()) }
+        val selectedDay = if (selectedDayIndex != -1) selectedDayIndex else 0
+
+        popupMenu.menu.getItem(selectedDay).isChecked = true
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            val selectedDay = menuItem.title.toString().replace(Regex("[^\\d]"), "").toInt()
+            countOfDays = selectedDay
+            viewModel.getUpcomingEventsById(countOfDays)
+            true
+        }
+        popupMenu.show()
     }
 
     private fun initDagger() {

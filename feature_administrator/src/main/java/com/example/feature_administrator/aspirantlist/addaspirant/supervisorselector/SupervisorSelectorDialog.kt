@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.model.Supervisor
 import com.example.feature_administrator.databinding.SupervisorSelectorDialogBinding
 
-
 class SupervisorSelectorDialog (
     private val supervisorList: List<Supervisor>,
     private val listener: (Supervisor) -> Unit

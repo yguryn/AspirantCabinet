@@ -10,10 +10,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringArrayResource
 import androidx.navigation.NavController
-import com.example.feature_research.addresearch.AddResearchScreen
+import com.example.feature_research.research.indplan.IndPlanScreen
+import com.example.feature_research.research.research.ResearchScreen
+import com.example.feature_research.research.tasks.TasksScreen
+import com.postgraduate.cabinet.ui.R
 import kotlinx.coroutines.launch
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -23,12 +26,13 @@ fun TabScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
-    val tabs = listOf("Роботи", "Завдання", "Інд. план")
+    val tabs = stringArrayResource(R.array.research_tabs)
 
     Column(modifier = Modifier.fillMaxWidth()) {
         TabRow(selectedTabIndex = pagerState.currentPage, containerColor = Color.White) {
             tabs.forEachIndexed { index, title ->
-                Tab(text = { Text(title) },
+                Tab(
+                    text = { Text(title) },
                     selected = pagerState.currentPage == index,
                     onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } }
                 )

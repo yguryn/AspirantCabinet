@@ -56,10 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:hint="@string/login"
-        app:hintTextColor="@color/brand_yellow"
         android:textColorHint="@color/gray"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:errorIconDrawable="@null"
+        app:hintTextColor="@color/brand_yellow"
         app:layout_constraintEnd_toStartOf="@id/endGuideline"
         app:layout_constraintStart_toEndOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@id/enterTextView">
@@ -68,9 +68,9 @@
             android:id="@+id/loginInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="aspirant@gmail.com"
             android:background="@drawable/edittext_back"
             android:maxLength="40"
+            android:text="admin@gmail.com"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -82,10 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="@string/password"
-        app:hintTextColor="@color/brand_yellow"
         android:textColorHint="@color/gray"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:errorIconDrawable="@null"
+        app:hintTextColor="@color/brand_yellow"
         app:layout_constraintEnd_toStartOf="@id/endGuideline"
         app:layout_constraintStart_toEndOf="@id/startGuideline"
         app:layout_constraintTop_toBottomOf="@id/loginEditText">
@@ -93,10 +93,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
-            android:text="123456"
-            android:background="@drawable/edittext_back"
             android:layout_height="wrap_content"
+            android:background="@drawable/edittext_back"
             android:maxLength="20"
+            android:text="123456"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -127,5 +127,15 @@
         app:layout_constraintEnd_toEndOf="@+id/endGuideline"
         app:layout_constraintStart_toStartOf="@+id/startGuideline"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

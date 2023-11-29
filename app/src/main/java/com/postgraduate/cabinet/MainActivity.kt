@@ -2,7 +2,6 @@ package com.postgraduate.cabinet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -13,8 +12,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.core.di.CoreInjectHelper
+import com.example.core.utils.Constants.ADMINISTRATOR
+import com.example.core.utils.Constants.ASPIRANT
+import com.example.core.utils.Constants.SUPERVISOR
+import com.example.core.utils.Constants.USER_TYPE
 import com.example.core.utils.SharedPreferencesHelper
-import com.example.feature_login.LoginFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.postgraduate.cabinet.di.DaggerAppComponent
 import javax.inject.Inject
@@ -23,9 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var prefsHelper: SharedPreferencesHelper
-    private var check = 0
-    private var checkAspirant = 0
-    private var checkSupervisor = 0
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
     private lateinit var currentDestination: NavDestination
@@ -49,20 +48,25 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             currentDestination = destination
-            if (prefsHelper.getString("USER_TYPE") == "Aspirant" && checkAspirant == 0) {
-                bottomNavigationView.menu.clear()
-                bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
-                checkAspirant++
-            }
-            if (prefsHelper.getString("USER_TYPE") == "Supervisor" && checkSupervisor == 0) {
-                bottomNavigationView.menu.clear()
-                bottomNavigationView.inflateMenu(R.menu.bottom_nav_supervisor_menu)
-                checkSupervisor++
-            }
-            if (prefsHelper.getString("USER_TYPE") == "Administrator" && check == 0) {
-                bottomNavigationView.menu.clear()
-                bottomNavigationView.inflateMenu(R.menu.bottom_nav_admin_menu)
-                check++
+            val userType = prefsHelper.getString(USER_TYPE)
+            if (navController.currentBackStackEntry?.destination?.id == com.postgraduate.cabinet.feature_login.R.id.loginFragment) {
+                when (userType) {
+                    ASPIRANT -> updateBottomNavMenu(
+                        R.menu.bottom_nav_menu,
+                        bottomNavigationView,
+                        userType
+                    )
+
+                    SUPERVISOR -> updateBottomNavMenu(
+                        R.menu.bottom_nav_supervisor_menu,
+                        bottomNavigationView, userType
+                    )
+
+                    ADMINISTRATOR -> updateBottomNavMenu(
+                        R.menu.bottom_nav_admin_menu,
+                        bottomNavigationView, userType
+                    )
+                }
             }
             if (destination.id == com.postgraduate.cabinet.feature_profile.R.id.profileFragment ||
                 destination.id == com.postgraduate.cabinet.feature_schedule.R.id.scheduleFragment ||
@@ -73,7 +77,6 @@ class MainActivity : AppCompatActivity() {
                 destination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment
             ) {
                 showBottomNavigationView()
-
             } else {
                 hideBottomNavigationView()
             }
@@ -107,12 +110,22 @@ class MainActivity : AppCompatActivity() {
                 currentDestination.id == com.example.feature_administrator.R.id.aspirantList ||
                 currentDestination.id == com.example.feature_events_list.R.id.event_list_navigation ||
                 currentDestination.id == com.example.feature_administrator.R.id.supervisorList ||
-                currentDestination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment) {
+                currentDestination.id == com.example.feature_supervisor_research.R.id.aspirantListFragment
+            ) {
                 finish()
             } else {
                 supportFragmentManager.popBackStack()
             }
         }
+    }
+
+    private fun updateBottomNavMenu(
+        menuResId: Int,
+        bottomNavigationView: BottomNavigationView,
+        type: String
+    ) {
+        bottomNavigationView.menu.clear()
+        bottomNavigationView.inflateMenu(menuResId)
     }
 
     private fun hideBottomNavigationView() {

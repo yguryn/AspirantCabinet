@@ -1,8 +1,8 @@
 package com.example.core.eventusecases
 
-import android.util.Log
 import com.example.core.di.EventCollection
 import com.example.core.model.Event
+import com.example.core.utils.Constants.USER_ID
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.CompletableDeferred
@@ -13,10 +13,9 @@ class GetAllEventsUseCase @Inject constructor(
     private val eventRef: CollectionReference,
     private val sharedPreferencesHelper: SharedPreferencesHelper
 ) {
-
     suspend fun execute(): MutableList<Event> {
         val deferred = CompletableDeferred<MutableList<Event>>()
-        val userId = sharedPreferencesHelper.getString("USER_ID")
+        val userId = sharedPreferencesHelper.getString(USER_ID)
         eventRef.whereEqualTo("user_id",userId?.trim()).get()
             .addOnSuccessListener { documents ->
                 val events = mutableListOf<Event>()
@@ -26,7 +25,6 @@ class GetAllEventsUseCase @Inject constructor(
                     events.add(event)
                 }
                 deferred.complete(events)
-                Log.d("TTT","curEvents$events")
             }
             .addOnFailureListener { exception ->
                 deferred.completeExceptionally(exception)

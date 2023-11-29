@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F6F5F5"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_scape_toolbar"
@@ -28,7 +24,8 @@
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_baseline_logout_24" />
+                android:src="@drawable/ic_baseline_logout_24"
+                android:contentDescription="Log out" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -40,31 +37,30 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/brand_yellow"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="140dp"
                 android:layout_height="140dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35dp"
-                android:foregroundGravity="center_horizontal"
-                app:cardCornerRadius="100dp">
+                app:cardCornerRadius="70dp"
+                android:layout_marginTop="35dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_account_circle_24" />
+                    android:src="@drawable/ic_baseline_account_circle_24"
+                    android:contentDescription="Profile Picture" />
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/fullNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:text="KG Official"
-                android:textColor="#fff"
-                android:textSize="23dp"
+                android:textColor="@color/white"
+                android:textSize="23sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -96,8 +92,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Факультет"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/facultyTextView"
@@ -105,9 +101,8 @@
                         android:layout_height="wrap_content"
                         android:text="1000K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -121,8 +116,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Група"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/groupTextView"
@@ -130,9 +125,8 @@
                         android:layout_height="wrap_content"
                         android:text="500K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -146,8 +140,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Здано робіт"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/numberOfWorksTextView"
@@ -155,14 +149,10 @@
                         android:layout_height="wrap_content"
                         android:text="33.1K+"
                         android:textColor="@color/brand_yellow"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
-
             </LinearLayout>
-
-
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
@@ -175,44 +165,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="25dp">
 
+            <!-- Phone Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/ic_baseline_mail_24" />
-
-                <TextView
-                    android:id="@+id/emailTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:text="kgofficial@gmail.com"
-                    android:textColor="#000"
-                    android:textSize="18dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_baseline_phone_24" />
+                    android:src="@drawable/ic_baseline_phone_24"
+                    android:contentDescription="@string/phone_icon_description" />
 
                 <TextView
                     android:id="@+id/phoneTextView"
@@ -222,21 +189,21 @@
                     android:paddingLeft="15dp"
                     android:text="+92345-1234567"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Birthday Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_birthday" />
+                    android:src="@drawable/ic_birthday"
+                    android:contentDescription="@string/birthday_icon_description" />
 
                 <TextView
                     android:id="@+id/birthdayTextView"
@@ -246,21 +213,21 @@
                     android:paddingLeft="15dp"
                     android:text="12-04-2002"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Supervisor Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/baseline_supervisor_account_24" />
+                    android:src="@drawable/baseline_supervisor_account_24"
+                    android:contentDescription="@string/supervisor_icon_description" />
 
                 <TextView
                     android:id="@+id/superVisorTextView"
@@ -270,21 +237,21 @@
                     android:paddingLeft="15dp"
                     android:text="Karachi- Pakistan"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Research Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/baseline_check_box_24" />
+                    android:src="@drawable/baseline_check_box_24"
+                    android:contentDescription="@string/research_icon_description" />
 
                 <TextView
                     android:id="@+id/researchTextView"
@@ -294,22 +261,21 @@
                     android:paddingLeft="15dp"
                     android:text="Show all comments"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
-
+            <!-- Payment Form Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_payment" />
+                    android:src="@drawable/ic_payment"
+                    android:contentDescription="@string/payment_icon_description" />
 
                 <TextView
                     android:id="@+id/paymentFormTextView"
@@ -319,21 +285,21 @@
                     android:paddingLeft="15dp"
                     android:text="Форма оплати: "
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Mark Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_grade" />
+                    android:src="@drawable/ic_grade"
+                    android:contentDescription="@string/mark_icon_description" />
 
                 <TextView
                     android:id="@+id/markTextView"
@@ -343,21 +309,21 @@
                     android:paddingLeft="15dp"
                     android:text="Оцінка викладача"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Education Form Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_education" />
+                    android:src="@drawable/ic_education"
+                    android:contentDescription="@string/education_icon_description" />
 
                 <TextView
                     android:id="@+id/educationFormTextView"
@@ -367,21 +333,21 @@
                     android:paddingLeft="15dp"
                     android:text="Форма навчання: Денна"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
 
+            <!-- Diploma Number Information -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ic_document" />
+                    android:src="@drawable/ic_document"
+                    android:contentDescription="@string/diploma_icon_description" />
 
                 <TextView
                     android:id="@+id/diplomNumberFormTextView"
@@ -391,9 +357,9 @@
                     android:paddingLeft="15dp"
                     android:text="Номер диплому"
                     android:textColor="#000"
-                    android:textSize="18dp" />
-
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

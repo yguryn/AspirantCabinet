@@ -10,7 +10,6 @@ class GetAllAspirantsUseCase @Inject constructor(
     @AspirantCollection
     private val aspirantRef: CollectionReference,
 ) {
-
     suspend fun execute(): MutableList<Aspirant> {
         val deferred = CompletableDeferred<MutableList<Aspirant>>()
 

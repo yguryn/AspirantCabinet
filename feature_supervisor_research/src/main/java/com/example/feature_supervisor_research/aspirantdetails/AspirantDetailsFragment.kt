@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.di.CoreInjectHelper
 import com.example.core.model.Article
+import com.postgraduate.cabinet.ui.R
 import com.example.feature_supervisor_research.aspirantdetails.recycler.AspirantDetailsAdapter
 import com.example.feature_supervisor_research.databinding.FragmentAspirantResearchDetailsBinding
 import com.example.feature_supervisor_research.di.DaggerFragmentsComponent
@@ -52,7 +53,7 @@ class AspirantDetailsFragment : Fragment() {
         viewModel.getInformation(researchId!!)
         viewModel.getResearchByIdUseCase(researchId)
         viewModel.research.observe(viewLifecycleOwner) {
-            binding.objectResearchTextView2.text = "Тема дослідження: \n${it.objectResearch}"
+            binding.objectResearchTextView2.text = "${requireContext().getString(R.string.research_topic)} \n${it.objectResearch}"
         }
         viewModel.listOfResearch.observe(viewLifecycleOwner) {
             listOfArticles = it as MutableList<Article>
@@ -84,7 +85,11 @@ class AspirantDetailsFragment : Fragment() {
             val intent = { Intent(Intent.ACTION_VIEW, Uri.parse(url)) }
             context.startActivity(intent.invoke())
         } catch (e: ActivityNotFoundException) {
-            Toast.makeText(context, "Неможливо відкрити посилання", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                context.getString(R.string.unable_to_open_link),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

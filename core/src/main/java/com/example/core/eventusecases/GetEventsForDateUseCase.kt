@@ -1,6 +1,5 @@
 package com.example.core.eventusecases
 
-import android.util.Log
 import com.example.core.di.EventCollection
 import com.example.core.model.Event
 import com.google.firebase.firestore.CollectionReference
@@ -20,8 +19,6 @@ class GetEventsForDateUseCase @Inject constructor(
             set(Calendar.MILLISECOND, 0)
         }
 
-        Log.d("TTT","wow")
-
         val endCalendar = Calendar.getInstance().apply {
             time = date
             set(Calendar.HOUR_OF_DAY, 23)
@@ -29,8 +26,6 @@ class GetEventsForDateUseCase @Inject constructor(
             set(Calendar.SECOND, 59)
             set(Calendar.MILLISECOND, 999)
         }
-        Log.d("TTT",userId)
-
         eventRef
             .whereEqualTo("user_id", userId)
             .whereGreaterThanOrEqualTo("event_start", startCalendar.time)
@@ -39,7 +34,6 @@ class GetEventsForDateUseCase @Inject constructor(
             .addOnSuccessListener { querySnapshot ->
                 val events = querySnapshot.documents.mapNotNull { it.toObject(Event::class.java) }
                 callback(events)
-                Log.d("TTT","ne wow")
             }
     }
 }

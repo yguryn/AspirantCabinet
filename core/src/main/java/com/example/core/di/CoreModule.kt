@@ -8,11 +8,13 @@ import com.example.core.utils.Constants.EVENT
 import com.example.core.utils.Constants.RESEARCH
 import com.example.core.utils.Constants.SUPERVISOR
 import com.example.core.utils.SharedPreferencesHelper
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
+import java.util.Locale
 import javax.inject.Singleton
 
 @Module
@@ -34,20 +36,21 @@ class CoreModule(val app: Application) {
     @Provides
     @Singleton
     @AspirantCollection
-    fun provideAspirantCollection(): CollectionReference = Firebase.firestore.collection(ASPIRANT)
+    fun provideAspirantCollection(): CollectionReference =
+        Firebase.firestore.collection(ASPIRANT.lowercase(Locale.getDefault()))
 
     @Provides
     @Singleton
     @SupervisorCollection
     fun provideSupervisorCollection(): CollectionReference = Firebase.firestore.collection(
-        SUPERVISOR
+        SUPERVISOR.lowercase(Locale.getDefault())
     )
 
     @Provides
     @Singleton
     @AdministratorCollection
     fun provideAdministratorCollection(): CollectionReference = Firebase.firestore.collection(
-        ADMINISTRATOR
+        ADMINISTRATOR.lowercase(Locale.getDefault())
     )
 
     @Provides

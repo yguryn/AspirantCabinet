@@ -71,12 +71,14 @@ class ModifySupervisorFragment : Fragment() {
 
     private fun setSupervisorValues() {
         binding.apply {
-            supervisor.faculty = facultyEditText.text.toString()
-            supervisor.name = nameEditText.text.toString()
-            supervisor.surname = surnameEditText.text.toString()
-            supervisor.middleName = middleNameEditText.text.toString()
-            supervisor.email = facultyEditText.text.toString()
-            supervisor.phone = facultyEditText.text.toString()
+            supervisor.apply {
+                supervisor.faculty = facultyEditText.text.toString()
+                supervisor.name = nameEditText.text.toString()
+                supervisor.surname = surnameEditText.text.toString()
+                supervisor.middleName = middleNameEditText.text.toString()
+                supervisor.email = facultyEditText.text.toString()
+                supervisor.phone = facultyEditText.text.toString()
+            }
         }
     }
 

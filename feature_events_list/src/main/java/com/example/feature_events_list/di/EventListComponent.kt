@@ -6,9 +6,7 @@ import com.example.feature_events_list.feature_event_list.di.EventListModule
 import dagger.Component
 
 @Component(
-    modules = [
-        EventListModule::class,
-    ],
+    modules = [EventListModule::class],
     dependencies = [CoreComponent::class]
 )
 @FragmentScope

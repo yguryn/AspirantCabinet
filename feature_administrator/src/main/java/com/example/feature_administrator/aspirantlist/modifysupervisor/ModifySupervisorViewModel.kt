@@ -23,5 +23,4 @@ class ModifySupervisorViewModel @Inject constructor(
     fun deleteSupervisor(supervisorId: String) {
         deleteSupervisorUseCase.execute(supervisorId)
     }
-
 }

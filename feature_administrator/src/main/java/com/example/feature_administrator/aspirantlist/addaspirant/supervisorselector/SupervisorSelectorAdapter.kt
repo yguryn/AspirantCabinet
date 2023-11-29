@@ -3,7 +3,6 @@ package com.example.feature_administrator.aspirantlist.addaspirant.supervisorsel
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
 import com.example.feature_administrator.databinding.SupervisorSelectorItemBinding
 

@@ -1,6 +1,5 @@
 package com.example.feature_research.research
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,11 +7,12 @@ import com.example.core.eventusecases.AddEventUseCase
 import com.example.core.eventusecases.GetEventsForDateUseCase
 import com.example.core.model.Event
 import com.example.core.model.Research
-import com.example.core.researchUseCase.AddResearchUseCase
 import com.example.core.researchUseCase.GetAllResearchesUseCase
 import com.example.core.researchUseCase.UpdateResearchUseCase
+import com.example.core.utils.Constants.USER_ID
 import com.example.core.utils.ResourceManager
 import com.example.core.utils.SharedPreferencesHelper
+import com.postgraduate.cabinet.ui.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,14 +22,12 @@ import javax.inject.Inject
 
 class ResearchViewModel @Inject constructor(
     private val getAllResearchesUseCase: GetAllResearchesUseCase,
-    private val addResearchUseCase: AddResearchUseCase,
     private val updateResearchUseCase: UpdateResearchUseCase,
     private val addEventUseCase: AddEventUseCase,
     private val sharedPreferencesHelper: SharedPreferencesHelper,
     private val getEventsForDateUseCase: GetEventsForDateUseCase,
     private val resourceManager: ResourceManager
-) :
-    ViewModel() {
+) : ViewModel() {
 
     private val _listOfResearch = MutableStateFlow(Research())
     val listOfResearch: StateFlow<Research> = _listOfResearch.asStateFlow()
@@ -52,8 +50,6 @@ class ResearchViewModel @Inject constructor(
     }
 
     fun addEvent(content: String, deadline: Date, form: String) {
-        Log.d("TTT","pizda")
-
         val calendarForTimes = Calendar.getInstance().apply {
             time = deadline
             set(Calendar.HOUR_OF_DAY, 6)
@@ -68,7 +64,10 @@ class ResearchViewModel @Inject constructor(
             allTimes.add(calendarForTimes.time.clone() as Date)
         }
 
-        getEventsForDateUseCase.execute(sharedPreferencesHelper.getString("USER_ID")!!, deadline) { events ->
+        getEventsForDateUseCase.execute(
+            sharedPreferencesHelper.getString(USER_ID)!!,
+            deadline
+        ) { events ->
 
             for (event in events) {
                 allTimes.removeAll { time ->
@@ -77,10 +76,8 @@ class ResearchViewModel @Inject constructor(
             }
 
             val startTime = allTimes.firstOrNull()
-            Log.d("TTT","wthcs")
 
             if (startTime != null) {
-                Log.d("TTT","wthcs here")
 
                 val calendarForEvent = Calendar.getInstance().apply {
                     time = startTime
@@ -89,7 +86,7 @@ class ResearchViewModel @Inject constructor(
                 val endTime = calendarForEvent.time
 
                 val event = Event(
-                    user_id = sharedPreferencesHelper.getString("USER_ID")!!,
+                    user_id = sharedPreferencesHelper.getString(USER_ID)!!,
                     title = content,
                     description = form,
                     event_start = startTime,
@@ -100,14 +97,12 @@ class ResearchViewModel @Inject constructor(
                     addEventUseCase.execute(event)
                 }
             } else {
-                Toast.makeText(resourceManager.getContext(), "Немає вільного часу на цей день", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    resourceManager.getContext(),
+                    R.string.no_free_time_for_this_day,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-        }
-    }
-
-    fun addResearch(research: Research) {
-        viewModelScope.launch {
-            val result = addResearchUseCase.execute(research)
         }
     }
 }

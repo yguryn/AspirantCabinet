@@ -41,9 +41,9 @@ class AddTaskDialog(private val addTaskListener: (String, Date) -> Unit) : Dialo
             val datePickerDialog = DatePickerDialog(
                 it.context,
                 { _, selectedYear, selectedMonth, selectedDayOfMonth ->
-                    selectedDate = GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
+                    selectedDate =
+                        GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
                     binding.choseDateEditText.setText(selectedDate.formatToString())
-                    Log.d("TTT","${selectedDate.formatToString()}")
                 },
                 year,
                 month,

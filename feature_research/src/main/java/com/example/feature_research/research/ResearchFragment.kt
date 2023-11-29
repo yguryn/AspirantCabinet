@@ -4,26 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
-import com.example.feature_research.addresearch.AddResearchScreen
 import com.example.feature_research.di.DaggerResearchComponent
 import javax.inject.Inject
 
@@ -45,57 +34,27 @@ class ResearchFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                MessageCard(
-                    findNavController()
-                )
+                MessageCard()
             }
         }
     }
 
     @Composable
-    fun MessageCard(findNavController: NavController) {
+    fun MessageCard() {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
             startDestination = "research"
         ) {
-            composable("login") {
-                LoginScreen(navController, findNavController)
-            }
             composable("research") {
                 TabScreen(navController = navController, viewModel)
             }
-            composable("addResearch") {
-                AddResearchScreen(viewModel)
-            }
         }
-
     }
 
     private fun initDagger() {
         DaggerResearchComponent.builder()
             .coreComponent(CoreInjectHelper.provideCoreComponent(applicationContext = requireActivity().applicationContext))
             .build().inject(this)
-    }
-}
-
-@Composable
-fun LoginScreen(
-    navController: NavController,
-    navigator: NavController
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Login Screen", color = Color.Blue, modifier = Modifier.clickable {
-
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("android-app://example.google.app/settings_fragment_two".toUri())
-                .build()
-            navigator.navigate(request)
-        })
-        Text("Go to Profile Screen")
     }
 }

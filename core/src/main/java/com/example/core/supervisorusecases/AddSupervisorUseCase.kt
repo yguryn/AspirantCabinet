@@ -9,7 +9,6 @@ class AddSupervisorUseCase @Inject constructor(
     @SupervisorCollection
     private val supervisorRef: CollectionReference,
 ) {
-
     fun execute(supervisor: Supervisor) {
         supervisorRef.add(supervisor)
     }

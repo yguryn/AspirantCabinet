@@ -1,20 +1,18 @@
 package com.example.feature_supervisor_research.aspirantlist.recycler
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.model.Aspirant
-import com.example.feature_supervisor_research.aspirantlist.ChangeGradeDialog
 import com.example.feature_supervisor_research.databinding.ItemAspirant2Binding
 
 class AspirantListAdapter(
-    val listener: (Aspirant) -> Unit,
-    val taskListener: (Aspirant) -> Unit,
-    val gradeChangedListener: (Aspirant) -> Unit,
-    val indPlanListener: (Aspirant) -> Unit,
-    val fragManager: FragmentManager
+    val onAspirantClick: (Aspirant) -> Unit,
+    val onNewTaskClick: (Aspirant) -> Unit,
+    val onIndPlanClick: (Aspirant) -> Unit,
+    val context: Context
 ) :
     RecyclerView.Adapter<AspirantListAdapter.ViewHolder>() {
 
@@ -29,27 +27,16 @@ class AspirantListAdapter(
                 facultyTextView.text = aspirant.faculty
                 groupTextView.text = aspirant.group
                 reviewWorksTextView.setOnClickListener {
-                    listener.invoke(aspirant)
+                    onAspirantClick.invoke(aspirant)
                 }
                 reviewTasksTextView.setOnClickListener {
-                    taskListener.invoke(aspirant)
+                    onNewTaskClick.invoke(aspirant)
                 }
                 indPlanTextView.setOnClickListener {
-                    indPlanListener.invoke(aspirant)
+                    onIndPlanClick.invoke(aspirant)
                 }
-                estimateTextView.text = "Загальна оцінка: ${aspirant.grade}"
-                estimateTextView.setOnClickListener {
-                    ChangeGradeDialog(
-                        aspirant.grade
-                    ) {
-                        aspirant.grade = it
-                        estimateTextView.text = "Загальна оцінка: $it"
-                        gradeChangedListener.invoke(aspirant)
-                    }.show(
-                        fragManager,
-                        null
-                    )
-                }
+                estimateTextView.text =
+                    "${context.getString(com.postgraduate.cabinet.ui.R.string.overall_assessment)}: ${aspirant.grade}"
             }
         }
     }

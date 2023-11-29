@@ -18,6 +18,7 @@ val formatForHours = SimpleDateFormat(HOURS_FORMAT, Locale.ENGLISH)
 val formatForMinutes = SimpleDateFormat(MINUTES_FORMAT, Locale.ENGLISH)
 val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
 val sdf2 = SimpleDateFormat("E, d MMM", Locale.getDefault())
+val format = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
 val Int.toPx: Float
     get() = this * Resources.getSystem().displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT

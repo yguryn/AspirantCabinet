@@ -17,4 +17,56 @@
     <string name="never">Never</string>
     <string name="supervisor_research">Supervisor</string>
     <string name="custom_notification_time">%1$s %2$s</string>
+    <string name="edit_content_work">Редагувати зміст роботи</string>
+    <string name="add_content_work">Додати зміст роботи</string>
+    <string name="content_work">Зміст роботи</string>
+    <string name="deadline">Термін виконання</string>
+    <string name="form_performance">Форма виконання</string>
+    <string name="term">Термін</string>
+    <string name="form">Форма</string>
+    <string name="cancel">Скасувати</string>
+    <string name="topic">Topic</string>
+    <string name="subject">Subject</string>
+    <string name="object2">Object</string>
+    <string name="saveEng">Save</string>
+    <string name="semester">Semester</string>
+    <string name="cancelEng">Cancel</string>
+    <string name="no_free_time_for_this_day">Немає вільного часу на цей день</string>
+    <string name="link_example">https://example.com</string>
+    <string name="research_topic">Тема дослідження</string>
+    <string name="sent">Надіслано</string>
+    <string name="send">Надіслати</string>
+    <string name="ok">OK</string>
+    <string name="unable_to_open_link">Неможливо відкрити посилання</string>
+    <string name="enter_correct_link">Введіть коректно посилання</string>
+    <string name="enter_correct_name">Введіть коректно назву</string>
+    <string name="list_of_jobs">Список робіт</string>
+    <string name="name">Назва</string>
+    <string name="task_from_supervisor">Завдання від наукового керівника</string>
+    <string name="overall_assessment">Загальна оцінка</string>
+    <string name="choose_supervisor">Виберіть наукового керівника</string>
+    <string name="supervisor_assessment">Оцінка викладача</string>
+    <string name="form_of_payment">Форма оплати</string>
+    <string name="form_of_education">Форма навчання</string>
+    <string name="contract">Контракт</string>
+    <string name="state_order">Держзамовлення</string>
+    <string name="diploma_number">Номер диплому</string>
+    <string name="information_about_completed_works">Інформація про виконані роботи</string>
+    <string name="sent_tasks">Відправлено робіт</string>
+    <string name="approved_tasks">Прийнято робіт</string>
+    <string name="on_inspection">На перевірці</string>
+    <string name="declined">Відхилено</string>
+    <string name="add_task">Додати роботу</string>
+
+    <string-array name="research_tabs">
+        <item>Роботи</item>
+        <item>Завдання</item>
+        <item>Інд. план</item>
+    </string-array>
+
+    <string-array name="event_days">
+        <item>1 день</item>
+        <item>7 днів</item>
+        <item>30 днів</item>
+    </string-array>
 </resources>

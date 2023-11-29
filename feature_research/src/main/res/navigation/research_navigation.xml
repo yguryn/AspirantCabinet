@@ -10,5 +10,4 @@
         android:label="ResearchFragment" >
     </fragment>
 
-
 </navigation>

@@ -14,7 +14,5 @@ import javax.inject.Scope
 )
 @FragmentScope
 interface ProfileComponent {
-
     fun inject(profileFragment: ProfileFragment)
-
 }

@@ -45,7 +45,7 @@ class IndPlanListFragment : Fragment() {
         val researchId = arguments?.getString("123")
         val studentName = arguments?.getString("name")
 
-        adapter = IndPlanAdapter() {
+        adapter = IndPlanAdapter(requireContext()) {
             currentResearch.listOfIndividualPlan[it].isDone = true
             viewModel.updateResearch(currentResearch, researchId!!)
         }

@@ -49,19 +49,21 @@ class CalendarAdapter(private val callback: OnItemClickListener) :
         }
 
         fun bind(dayOfMonth: DayOfMonthUI) {
-            binding.itemCalendar.text = dayOfMonth.day.toString()
-            binding.nameOfDay.text = dayOfMonth.nameOfDay
+            binding.apply {
+                itemCalendar.text = dayOfMonth.day.toString()
+                nameOfDay.text = dayOfMonth.nameOfDay
 
-            if (dayOfMonth.isPressed) {
-                binding.selectBorder.visibility = View.VISIBLE
-            } else {
-                binding.selectBorder.visibility = View.GONE
-            }
+                if (dayOfMonth.isPressed) {
+                    selectBorder.visibility = View.VISIBLE
+                } else {
+                    selectBorder.visibility = View.GONE
+                }
 
-            if (dayOfMonth.currentDay && dayOfMonth.currentMonth) {
-                binding.currentDayBorder.visibility = View.VISIBLE
-            } else {
-                binding.currentDayBorder.visibility = View.GONE
+                if (dayOfMonth.currentDay && dayOfMonth.currentMonth) {
+                    currentDayBorder.visibility = View.VISIBLE
+                } else {
+                    currentDayBorder.visibility = View.GONE
+                }
             }
         }
     }

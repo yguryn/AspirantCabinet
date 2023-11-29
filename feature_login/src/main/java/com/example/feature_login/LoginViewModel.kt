@@ -1,72 +1,64 @@
 package com.example.feature_login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.core.administratorusecase.CheckIsAdministratorUseCase
-import com.example.core.aspirantusecase.GetTypeOfUserUseCase
-import com.example.core.eventusecases.GetAllEventsUseCase
-import com.example.core.model.Administrator
-import com.example.core.model.Aspirant
-import com.example.core.model.Event
-import com.example.core.model.Supervisor
+import com.example.core.aspirantusecase.CheckIsAspirantUseCase
 import com.example.core.supervisorusecases.CheckIsSupervisorUseCase
+import com.example.core.utils.Constants.ADMINISTRATOR
+import com.example.core.utils.Constants.ASPIRANT
+import com.example.core.utils.Constants.FCM_TOKEN
+import com.example.core.utils.Constants.RESEARCH_ID
+import com.example.core.utils.Constants.SUPERVISOR
+import com.example.core.utils.Constants.USER_ID
+import com.example.core.utils.Constants.USER_TYPE
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-    private val getTypeOfUserUseCase: GetTypeOfUserUseCase,
+    private val checkIsAspirantUseCase: CheckIsAspirantUseCase,
     private val checkIsSupervisorUseCase: CheckIsSupervisorUseCase,
     private val checkIsAdministratorUseCase: CheckIsAdministratorUseCase,
-    private val sharedPreferencesHelper: SharedPreferencesHelper
+    private val sharedPreferencesHelper: SharedPreferencesHelper,
 ) : ViewModel() {
 
-    private var _aspirant = MutableLiveData<Aspirant>()
-    val aspirant: LiveData<Aspirant>
-        get() = _aspirant
+    private var _usertype = MutableLiveData<UserType>()
+    val userType: LiveData<UserType>
+        get() = _usertype
 
-    private var _supervisor = MutableLiveData<Supervisor>()
-    val supervisor: LiveData<Supervisor>
-        get() = _supervisor
-
-    private var _administrator = MutableLiveData<Administrator>()
-    val administrator: LiveData<Administrator>
-        get() = _administrator
-
-    fun checkAspirant(email: String) {
-        Log.d("TTT", "check")
-        viewModelScope.launch {
-            _administrator.value = checkIsAdministratorUseCase.execute(email)
+    suspend fun determineUserType(email: String) {
+        val aspirant = checkIsAspirantUseCase.execute(email)
+        aspirant?.let {
+            writeUserInfo(aspirant.id, ASPIRANT)
+            writeResearch(aspirant.researchId)
+            _usertype.postValue(UserType.ASPIRANT)
+            return@let
         }
-        viewModelScope.launch {
-
-            _aspirant.value = getTypeOfUserUseCase.execute(email)
+        val supervisor = checkIsSupervisorUseCase.execute(email)
+        supervisor?.let {
+            writeUserInfo(supervisor.id, SUPERVISOR)
+            _usertype.postValue(UserType.SUPERVISOR)
+            return@let
         }
-
-    }
-
-    fun checkSuperVisor(email: String) {
-        viewModelScope.launch {
-
-            _supervisor.value = checkIsSupervisorUseCase.execute(email)
+        val administrator = checkIsAdministratorUseCase.execute(email)
+        administrator?.let {
+            writeUserInfo(administrator.id, ADMINISTRATOR)
+            _usertype.postValue(UserType.ADMINISTRATOR)
+            return@let
         }
     }
 
-    fun writeUserInfo(id: String, type: String) {
-        sharedPreferencesHelper.putString("USER_ID", id)
-        sharedPreferencesHelper.putString("USER_TYPE", type)
-        val token = sharedPreferencesHelper.getString("FCM_TOKEN")
-        Log.d("TTT","$token")
+    private fun writeUserInfo(id: String, type: String) {
+        sharedPreferencesHelper.putString(USER_ID, id)
+        sharedPreferencesHelper.putString(USER_TYPE, type)
+        val token = sharedPreferencesHelper.getString(FCM_TOKEN)
         if (token != null) {
-            if (type == "Aspirant") {
+            if (type == ASPIRANT) {
                 val userRef = FirebaseFirestore.getInstance().document("aspirant/$id")
                 userRef.update("fcmToken", token)
-            } else if (type == "Supervisor") {
+            } else if (type == SUPERVISOR) {
                 val userRef = FirebaseFirestore.getInstance().document("supervisor/$id")
                 userRef.update("fcmToken", token)
             }
@@ -75,9 +67,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun writeResearch(researchId: String) {
-        sharedPreferencesHelper.putString("RESEARCH_ID", researchId)
+    private fun writeResearch(researchId: String) {
+        sharedPreferencesHelper.putString(RESEARCH_ID, researchId)
     }
 
-    fun getUserInfo() = sharedPreferencesHelper.getString("USER_TYPE")
+    fun getUserInfo() = sharedPreferencesHelper.getString(USER_TYPE)
 }

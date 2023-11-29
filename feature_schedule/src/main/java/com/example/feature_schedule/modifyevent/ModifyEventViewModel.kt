@@ -1,16 +1,14 @@
 package com.example.feature_schedule.modifyevent
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.core.eventusecases.DeleteEventUseCase
 import com.example.core.eventusecases.GetEventByIdUseCase
 import com.example.core.eventusecases.ModifyEventUseCase
 import com.example.core.model.Event
+import com.example.core.utils.Constants.USER_ID
 import com.example.core.utils.SharedPreferencesHelper
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ModifyEventViewModel @Inject constructor(
@@ -27,7 +25,6 @@ class ModifyEventViewModel @Inject constructor(
 
     fun getEventById(id: String) {
         getEventByIdUseCase.execute(id) {
-            Log.d("TTT", "OPA $it")
             _event.value = it
         }
     }
@@ -40,5 +37,5 @@ class ModifyEventViewModel @Inject constructor(
         deleteEventUseCase.execute(eventId)
     }
 
-    fun getUserId() = preferencesHelper.getString("USER_ID")
+    fun getUserId() = preferencesHelper.getString(USER_ID)
 }

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.core.utils.Constants.FCM_TOKEN
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -26,14 +27,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        // Check whether the message contains a notification payload.
         if (remoteMessage.notification != null) {
             val title = remoteMessage.notification!!.title
             val body = remoteMessage.notification!!.body
-            Log.d("TTT","$title")
-            Log.d("TTT","$body")
-
-            // Now you can use these values to create a notification on the device.
             showNotification(title, body)
         }
     }
@@ -55,18 +51,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "Channel human readable title",
+                "Event reminder",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             notificationManager.createNotificationChannel(channel)
         }
-        Log.d("TTT","notif")
         notificationManager.notify(0, notificationBuilder.build())
     }
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        sharedPreferencesHelper.putString("FCM_TOKEN", token)
-        Log.d("TTT","token")
+        sharedPreferencesHelper.putString(FCM_TOKEN, token)
     }
 }

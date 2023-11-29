@@ -10,6 +10,9 @@ import com.example.core.model.Research
 import com.example.core.model.Supervisor
 import com.example.core.researchUseCase.GetResearchByIdUseCase
 import com.example.core.supervisorusecases.GetSupervisorByIdUseCase
+import com.example.core.utils.Constants.ASPIRANT
+import com.example.core.utils.Constants.USER_ID
+import com.example.core.utils.Constants.USER_TYPE
 import com.example.core.utils.SharedPreferencesHelper
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,13 +37,18 @@ class ProfileViewModel @Inject constructor(
         get() = _research
 
     fun getUserInfo() {
-        val userId = preferencesHelper.getString("USER_ID")
-        val userType = preferencesHelper.getString("USER_TYPE")
-        if (userType == "Aspirant") {
+        val userId = preferencesHelper.getString(USER_ID)
+        val userType = preferencesHelper.getString(USER_TYPE)
+        if (userType == ASPIRANT) {
             viewModelScope.launch {
                 _aspirant.value = getAspirantByIdUseCase.execute(userId!!)
             }
         }
+    }
+
+    fun logOut() {
+        preferencesHelper.putString(USER_ID, "")
+        preferencesHelper.putString(USER_TYPE, "")
     }
 
     fun getSupervisorById(supervisorId: String){

@@ -5,18 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.aspirantusecase.DeleteAspirantUseCase
-import com.example.core.aspirantusecase.GetAspirantByIdUseCase
 import com.example.core.aspirantusecase.ModifyAspirantUseCase
 import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
-import com.example.core.supervisorusecases.AddSupervisorUseCase
 import com.example.core.supervisorusecases.GetAllSupervisorsByFaculty
 import com.example.core.supervisorusecases.GetSupervisorByIdUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ModifyAspirantViewModel @Inject constructor(
-    private val getAspirantByIdUseCase: GetAspirantByIdUseCase,
     private val getSupervisorByIdUseCase: GetSupervisorByIdUseCase,
     private val getAllSupervisorsByFaculty: GetAllSupervisorsByFaculty,
     private val modifyAspirantUseCase: ModifyAspirantUseCase,
@@ -34,12 +31,6 @@ class ModifyAspirantViewModel @Inject constructor(
     private var _supervisors = MutableLiveData<List<Supervisor>>()
     val supervisors: LiveData<List<Supervisor>>
         get() = _supervisors
-
-    fun getAspirantById(aspirantId: String) {
-        viewModelScope.launch {
-            _aspirant.value = getAspirantByIdUseCase.execute(aspirantId)
-        }
-    }
 
     fun getSuperVisorById(supervisorId: String) {
         viewModelScope.launch {

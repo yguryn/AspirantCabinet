@@ -28,24 +28,12 @@ class AddAspirantFragment : Fragment(R.layout.fragment_add_aspirant) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
-            if (true) {
-                binding.errorTextView.isVisible = false
-                setAspirantObject()
-                val bundle = Bundle().apply {
-                    putParcelable("aspirant", aspirant)
-                }
-                findNavController().navigate(R.id.action_addAspirant_to_addAspirantSecondStep, bundle)
-            } else {
-                binding.errorTextView.isVisible = true
+            binding.errorTextView.isVisible = false
+            setAspirantObject()
+            val bundle = Bundle().apply {
+                putParcelable("aspirant", aspirant)
             }
-        }
-    }
-
-    private fun checkIsAllDataIsCorrect(): Boolean {
-        binding.apply {
-            return (nameEditText.text!!.isNotEmpty() && surnameEditText.text!!.isNotEmpty()
-                    && middleNameEditText.text!!.isNotEmpty() && phoneNumberEditText.text!!.isNotEmpty() &&
-                    emailNumberEditText.text!!.isNotEmpty())
+            findNavController().navigate(R.id.action_addAspirant_to_addAspirantSecondStep, bundle)
         }
     }
 

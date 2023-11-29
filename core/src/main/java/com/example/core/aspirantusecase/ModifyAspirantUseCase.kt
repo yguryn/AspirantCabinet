@@ -9,7 +9,6 @@ class ModifyAspirantUseCase @Inject constructor(
     @AspirantCollection
     private val aspirantRef: CollectionReference,
 ) {
-
     fun execute(aspirant: Aspirant) {
         val data = mapOf(
             "name" to aspirant.name,

@@ -15,5 +15,5 @@
     <item
         android:id="@+id/go_to_aspirant_research"
         android:icon="@drawable/baseline_people_alt_24"
-        android:title="Аспіранти" />
+        android:title="@string/aspirant" />
 </menu>

@@ -183,8 +183,6 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
 
             eventStartTime = roundedHours * ScheduleFragment.MINUTES_IN_HOUR + roundedMinutes
-
-            checkTimeErrors()
         }
 
     private val timePickerDialogListenerEnd: TimePickerDialog.OnTimeSetListener =
@@ -217,22 +215,16 @@ class ModifyEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
 
             eventEndTime = roundedHours * ScheduleFragment.MINUTES_IN_HOUR + roundedMinutes
-
-            checkTimeErrors()
         }
-
-    fun checkTimeErrors() {
-
-    }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         calendarStartTime.setDate(year, month, dayOfMonth)
         calendarEndTime.setDate(year, month, dayOfMonth)
 
-        binding.dateStartTextView.text = calendarStartTime.timeInMillis.formatDateToPresent()
-        binding.dateEndTextView.text = calendarEndTime.timeInMillis.formatDateToPresent()
-
-        checkTimeErrors()
+        binding.apply {
+            dateStartTextView.text = calendarStartTime.timeInMillis.formatDateToPresent()
+            dateEndTextView.text = calendarEndTime.timeInMillis.formatDateToPresent()
+        }
     }
 
     private fun initDagger() {

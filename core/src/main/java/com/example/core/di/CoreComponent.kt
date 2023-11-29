@@ -48,7 +48,7 @@ interface CoreComponent {
 
     fun addSupervisorUseCase(): AddSupervisorUseCase
 
-    fun getTypeOfUserUseCase(): GetTypeOfUserUseCase
+    fun getTypeOfUserUseCase(): CheckIsAspirantUseCase
 
     fun checkIsSupervisorUseCase(): CheckIsSupervisorUseCase
 
@@ -56,13 +56,11 @@ interface CoreComponent {
 
     fun getAspirantByIdUseCase(): GetAspirantByIdUseCase
 
-    fun addResearchUseCase(): AddResearchUseCase
-
     fun getAllResearchesByIdUseCase(): GetAllResearchesByIdUseCase
 
-    fun getSuperVisorByIdUseCase() : GetSupervisorByIdUseCase
+    fun getSuperVisorByIdUseCase(): GetSupervisorByIdUseCase
 
-    fun getResearchByIdUseCase() : GetResearchByIdUseCase
+    fun getResearchByIdUseCase(): GetResearchByIdUseCase
 
     fun modifyEventUseCase(): ModifyEventUseCase
 
@@ -85,4 +83,5 @@ interface CoreComponent {
     fun sharedPrefHelper(): SharedPreferencesHelper
 
     fun resourceManager(): ResourceManager
+
 }

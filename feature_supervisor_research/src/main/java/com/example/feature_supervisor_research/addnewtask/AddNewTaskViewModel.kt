@@ -13,7 +13,7 @@ import com.example.core.model.Task
 import com.example.core.researchUseCase.GetResearchByIdUseCase
 import com.example.core.researchUseCase.UpdateTasksUseCase
 import com.example.core.utils.ResourceManager
-import com.example.core.utils.SharedPreferencesHelper
+import com.postgraduate.cabinet.ui.R
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -23,7 +23,6 @@ class AddNewTaskViewModel @Inject constructor(
     private val updateTasksUseCase: UpdateTasksUseCase,
     private val addEventUseCase: AddEventUseCase,
     private val getEventsForDateUseCase: GetEventsForDateUseCase,
-    private val sharedPreferencesHelper: SharedPreferencesHelper,
     private val resourceManager: ResourceManager
 ) : ViewModel() {
 
@@ -71,7 +70,7 @@ class AddNewTaskViewModel @Inject constructor(
                 val event = Event(
                     user_id = aspirantId,
                     title = content,
-                    description = "Завдання від наукового керівника",
+                    description = resourceManager.getString(R.string.task_from_supervisor),
                     event_start = startTime,
                     event_end = endTime,
                 )
@@ -80,7 +79,7 @@ class AddNewTaskViewModel @Inject constructor(
                     addEventUseCase.execute(event)
                 }
             } else {
-                Toast.makeText(resourceManager.getContext(), "Немає вільного часу на цей день", Toast.LENGTH_SHORT).show()
+                Toast.makeText(resourceManager.getContext(), resourceManager.getString(R.string.no_free_time_for_this_day), Toast.LENGTH_SHORT).show()
             }
         }
     }

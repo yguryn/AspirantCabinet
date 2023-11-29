@@ -1,7 +1,6 @@
 package com.example.feature_administrator.aspirantlist.addaspirant
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.core.di.CoreInjectHelper
 import com.example.core.model.Aspirant
-import com.example.core.model.Supervisor
 import com.example.feature_administrator.R
 import com.example.feature_administrator.aspirantlist.addaspirant.supervisorselector.SupervisorSelectorDialog
 import com.example.feature_administrator.aspirantlist.di.DaggerAdministratorComponent
-import com.example.feature_administrator.aspirantlist.listOfAspirants.AspirantListViewModel
 import com.example.feature_administrator.databinding.FragmentAddAspirantStep2Binding
 import javax.inject.Inject
 
@@ -47,7 +44,7 @@ class AddAspirantSecondStepFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        aspirant = arguments?.getParcelable<Aspirant>("aspirant")!!
+        aspirant = arguments?.getParcelable("aspirant")!!
         viewModel.getAllSupervisors()
         viewModel.supervisors.observe(viewLifecycleOwner) { supervisors ->
             binding.supervisorTextView.setOnClickListener {
@@ -61,7 +58,6 @@ class AddAspirantSecondStepFragment : Fragment() {
                 supervisorSelectorDialog.show(childFragmentManager, null)
             }
         }
-        Log.d("TTT", "$id")
 
         binding.addButton.setOnClickListener {
             if (checkIsAllDataIsCorrect()) {
@@ -79,15 +75,17 @@ class AddAspirantSecondStepFragment : Fragment() {
         binding.apply {
             return (facultyEditText.text!!.isNotEmpty() && groupEditText.text!!.isNotEmpty()
                     && specializationEditText.text!!.isNotEmpty() && paymentForm.text.isNotEmpty() &&
-                    supervisorTextView.text != "Виберіть наукового керівника")
+                    supervisorTextView.text != requireContext().getString(com.postgraduate.cabinet.ui.R.string.choose_supervisor))
         }
     }
 
     private fun setAspirantValues() {
         binding.apply {
-            aspirant.faculty = facultyEditText.text.toString()
-            aspirant.group = groupEditText.text.toString()
-            aspirant.specialization = specializationEditText.text.toString()
+            aspirant.apply {
+                faculty = facultyEditText.text.toString()
+                group = groupEditText.text.toString()
+                specialization = specializationEditText.text.toString()
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.core.researchUseCase
 
 import com.example.core.di.ResearchCollection
 import com.example.core.model.Research
+import com.example.core.utils.Constants.RESEARCH_ID
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.CompletableDeferred
@@ -14,7 +15,7 @@ class GetAllResearchesUseCase @Inject constructor(
 ) {
     suspend fun execute(): Research {
         val deferred = CompletableDeferred<Research>()
-        val researchId = sharedPreferencesHelper.getString("RESEARCH_ID")!!
+        val researchId = sharedPreferencesHelper.getString(RESEARCH_ID)!!
         researchesRef.document(researchId).get()
             .addOnSuccessListener { document ->
                 val research = document.toObject(Research::class.java)

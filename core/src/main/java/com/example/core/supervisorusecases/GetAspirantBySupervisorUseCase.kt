@@ -1,10 +1,10 @@
 package com.example.core.supervisorusecases
 
-import android.util.Log
 import com.example.core.di.AspirantCollection
 import com.example.core.di.SupervisorCollection
 import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
+import com.example.core.utils.Constants.USER_ID
 import com.example.core.utils.SharedPreferencesHelper
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.CompletableDeferred
@@ -31,21 +31,18 @@ class GetAspirantsBySupervisorUseCase @Inject constructor(
                 .addOnSuccessListener { asp ->
                     val aspirant = asp.toObject(Aspirant::class.java)
                     aspirant?.id = aspirantId
-                    Log.d("TTT","asp.id ${aspirant?.id}")
-                    Log.d("TTT","aspIdd ${aspirantId}")
                     deferredAspirant.complete(aspirant)
                 }
         }
 
-        val aspirants = deferredList.awaitAll().filterNotNull().toMutableList()
-        return aspirants
+        return deferredList.awaitAll().filterNotNull().toMutableList()
     }
 
-    suspend fun getSupervisor(): Supervisor {
-        val supervisorId = sharedPreferencesHelper.getString("USER_ID")!!
+    private suspend fun getSupervisor(): Supervisor {
+        val supervisorId = sharedPreferencesHelper.getString(USER_ID)!!
         val deferredSupervisor = CompletableDeferred<Supervisor>()
         supervisorRef.document(supervisorId).get().addOnSuccessListener {
-            deferredSupervisor.complete(it.toObject(Supervisor::class.java)!!)
+            it.toObject(Supervisor::class.java)?.let { it1 -> deferredSupervisor.complete(it1) }
         }
         return deferredSupervisor.await()
     }

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.aspirantusecase.AddAspirantUseCase
-import com.example.core.aspirantusecase.GetAllAspirantsUseCase
 import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
 import com.example.core.supervisorusecases.GetAllSupervisorsByFaculty

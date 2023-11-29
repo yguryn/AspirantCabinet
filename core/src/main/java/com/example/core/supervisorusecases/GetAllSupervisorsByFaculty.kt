@@ -10,7 +10,6 @@ class GetAllSupervisorsByFaculty @Inject constructor(
     @SupervisorCollection
     private val supervisorRef: CollectionReference,
 ) {
-
     suspend fun execute(): MutableList<Supervisor> {
         val deferred = CompletableDeferred<MutableList<Supervisor>>()
         supervisorRef.get()

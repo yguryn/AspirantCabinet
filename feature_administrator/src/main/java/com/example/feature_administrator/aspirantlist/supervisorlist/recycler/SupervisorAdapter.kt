@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.model.Aspirant
 import com.example.core.model.Supervisor
-import com.example.feature_administrator.aspirantlist.listOfAspirants.recycler.differCallback
-import com.example.feature_administrator.databinding.ItemAspirantBinding
 import com.example.feature_administrator.databinding.ItemSupervisorBinding
 
 class SupervisorAdapter(private val listener: (Supervisor)->Unit) :

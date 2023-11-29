@@ -50,7 +50,7 @@ class AspirantListFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        aspirantAdapter = AspirantAdapter() {
+        aspirantAdapter = AspirantAdapter {
             val bundle = Bundle().apply {
                 putParcelable("aspirant", it)
             }

@@ -52,12 +52,14 @@ class AddSupervisorFragment : Fragment(R.layout.fragment_add_supervisor) {
 
     private fun setSupervisorValues() {
         binding.apply {
-            supervisor.faculty = facultyEditText.text.toString()
-            supervisor.name = nameEditText.text.toString()
-            supervisor.surname = surnameEditText.text.toString()
-            supervisor.middleName = middleNameEditText.text.toString()
-            supervisor.email = facultyEditText.text.toString()
-            supervisor.phone = facultyEditText.text.toString()
+            supervisor.apply {
+                faculty = facultyEditText.text.toString()
+                name = nameEditText.text.toString()
+                surname = surnameEditText.text.toString()
+                middleName = middleNameEditText.text.toString()
+                email = facultyEditText.text.toString()
+                phone = facultyEditText.text.toString()
+            }
         }
     }
 

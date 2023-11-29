@@ -18,12 +18,8 @@ import com.example.feature_schedule.schedule.ScheduleFragment.Companion.MINUTES_
 import com.example.feature_schedule.schedule.model.SelectedDate
 import com.example.feature_schedule.utils.*
 import com.example.feature_schedule.utils.Constants.DATE_PATTERN
-import com.example.feature_schedule.utils.Constants.NOTIFICATION_CUSTOM
-import com.example.feature_schedule.utils.Constants.NOTIFICATION_NEVER
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.postgraduate.cabinet.ui.R
 import com.postgraduate.cabinet.feature_schedule.databinding.FragmentNewEventBinding
-import kotlinx.coroutines.flow.callbackFlow
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -42,13 +38,9 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var calendarEndTime = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, get(Calendar.HOUR_OF_DAY) + 1)
     }
-    private var notificationDelay: String = "Never"
     private var eventStartTime = 0
     private var eventEndTime = 0
     private var selectedDate = SelectedDate(24, 2, 2023)
-    private var customNotificationIndex = 0
-
-    private var editTextCustomNotification = ""
 
 
     @Inject
@@ -135,7 +127,6 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
             timePicker.show()
         }
-
         binding.imageViewModifyCross.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -165,8 +156,6 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
 
             eventStartTime = roundedHours * MINUTES_IN_HOUR + roundedMinutes
-
-            checkTimeErrors()
         }
 
     private val timePickerDialogListenerEnd: TimePickerDialog.OnTimeSetListener =
@@ -193,20 +182,7 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
 
             eventEndTime = roundedHours * MINUTES_IN_HOUR + roundedMinutes
-
-            checkTimeErrors()
         }
-
-    fun checkTimeErrors() {
-
-    }
-
-    private fun setAlarmVisibility(visibilityId: Int) {
-        binding.textViewAlarmNotification.visibility = visibilityId
-        binding.switchAlarm.visibility = visibilityId
-        binding.textViewAlarmInfo.visibility = visibilityId
-    }
-
 
     private fun getCalendarForDay(day: Int): Calendar =
         Calendar.getInstance().apply { set(Calendar.DAY_OF_MONTH, day) }
@@ -220,8 +196,6 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         binding.textViewDateStart.text = calendarStartTime.timeInMillis.formatDateToPresent()
         binding.textViewDateEnd.text = calendarEndTime.timeInMillis.formatDateToPresent()
-
-        checkTimeErrors()
     }
 
     private fun initDagger() {
@@ -229,5 +203,4 @@ class NewEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             .coreComponent(CoreInjectHelper.provideCoreComponent(applicationContext = requireActivity().applicationContext))
             .build().inject(this)
     }
-
 }
